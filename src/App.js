@@ -1,15 +1,15 @@
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import React, { useState } from 'react';
-import Preloader from './components/Preloader.js'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import './index.css';
+import GalaxyBackground from './components/BackGround.js';
+import ResponsiveAppBar from './components/AppBar.js';
 
 function App() {
-  const [load, updateLoad] = useState(true);
   return (
-    <Router>
-      
-    </Router>
+    <>
+      <GalaxyBackground />
+      <ResponsiveAppBar />
+    </>
   );
 }
 
