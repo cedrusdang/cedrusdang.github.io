@@ -56,7 +56,7 @@ function TopNameOwner({ isSmall }) {
         lineHeight: 1,
       }}
     >
-      Cedrus Dang
+      {OwnerName}
     </Typography>
   );
 }
@@ -114,7 +114,17 @@ function TopPageButtons({ pages }) {
 }
 
 function UserAvatar({ onClick }) {
-  const [isHover, setHover] = React.useState(false);
+  const [isClicked, setClicked] = React.useState(false);
+
+  const handleAvatarClick = (e) => {
+    // Click 1st scalex3, 2nd scalex1
+    if (!isClicked) {
+      setClicked(true);
+    } else {
+      setClicked(false); 
+      if (onClick) onClick(e); 
+    }
+  };
 
   return (
     <Box
@@ -127,9 +137,7 @@ function UserAvatar({ onClick }) {
         justifyContent: 'center',
         margin: '1px',
       }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onClick={onClick}
+      onClick={handleAvatarClick}
     >
       <Avatar
         alt="User"
@@ -139,17 +147,17 @@ function UserAvatar({ onClick }) {
           height: 36,
           position: 'relative',
           justifyContent: 'center',
-          border: isHover ? '0.5px solid rgba(64, 255, 0, 0.28)' : '2px solid transparent',
-          boxShadow: isHover
-            ? '0 0 3px 1px rgb(64, 220, 255)'
+          border: isClicked ? '0.5px solid rgba(64, 255, 0, 0.28)' : '2px solid transparent',
+          boxShadow: isClicked
+            ? '0 0 12px 2px rgb(64, 220, 255)'
             : '0 0 0 0 rgba(56,180,255,0)',
-          transform: isHover
-            ? 'scale(3) translateX(-3px) translateY(15px)'
+          transform: isClicked
+            ? 'scale(3) translateX(-10px) translateY(10px)'
             : 'none',
-          transition: 'transform 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.18s, border 0.18s, margin 0.18s',
-          cursor: 'none',
+          transition: 'transform 1s cubic-bezier(.4,2,.6,1), box-shadow 0.18s, border 0.18s, margin 0.18s',
+          cursor: 'pointer',
           zIndex: 10,
-          animation: !isHover ? 'avatar-blink 1s infinite ease-in-out alternate' : 'none',
+          animation: !isClicked ? 'avatar-blink 1s infinite ease-in-out alternate' : 'none',
           '@keyframes avatar-blink': {
             '0%':   { filter: 'drop-shadow(0 0 0px rgb(13, 140, 245))' },
             '100%': { filter: 'drop-shadow(0 0 3px rgb(41, 246, 89))' }
