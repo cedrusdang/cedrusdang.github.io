@@ -5,11 +5,21 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import {LinkedIn, Portfolio, Resume, AvatarPic, LogoPic, OwnerName} from '../personal_info.js';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import IconButton from '@mui/material/IconButton';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import {LinkedIn, Youtube, Resume, AvatarPic, LogoPic, OwnerName} from '../personal_info.js';
 import {TopBarIntro} from '../personal_info.js';
 
-export function TopLogoIcon() {
+const pages = [
+  { name: 'Youtube', href: Youtube },
+  { name: 'Resume', href: Resume },
+  { name: 'LinkedIn', href: LinkedIn }
+];
+
+function TopLogoIcon() {
   return (
     <Box
       component="img"
@@ -29,28 +39,30 @@ export function TopLogoIcon() {
   );
 }
 
-export function TopNameOwner() {
+function TopNameOwner({ isSmall }) {
+  let fontSize = isSmall ? 14 : 22;
   return (
     <Typography
-      variant="h6"
-      noWrap
+      Wrap
       component="a"
       href="/"
       sx={{
         fontWeight: 800,
         color: '#222',
-        fontSize: 22,
+        fontSize,
         letterSpacing: 0,
         textDecoration: 'none',
         fontFamily: 'Inter, monospace',
+        lineHeight: 1,
       }}
     >
-      {OwnerName}
+      Cedrus Dang
     </Typography>
   );
 }
 
-export function TopPortfolioIntro() {
+
+function TopPortfolioIntro() {
   return (
     <Typography
       component="a"
@@ -69,17 +81,7 @@ export function TopPortfolioIntro() {
   );
 }
 
-export function LeftTopBarSection() {
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
-      <TopLogoIcon />
-      <TopNameOwner/>
-      <TopPortfolioIntro sx={{ alignItems: 'right' }} />
-    </Box>
-  );
-}
-
-export function TopPageButtons({ pages }) {
+function TopPageButtons({ pages }) {
   return (
     <>
       {pages.map((page) => (
@@ -89,6 +91,7 @@ export function TopPageButtons({ pages }) {
           target={page.href.startsWith('http') ? '_blank' : undefined}
           rel={page.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           variant="outlined"
+          target="_blank"
           sx={{
             color: '#333',
             borderColor: '#dedede',
@@ -110,7 +113,7 @@ export function TopPageButtons({ pages }) {
   );
 }
 
-export function UserAvatar({ onClick }) {
+function UserAvatar({ onClick }) {
   const [isHover, setHover] = React.useState(false);
 
   return (
@@ -122,6 +125,7 @@ export function UserAvatar({ onClick }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        margin: '1px',
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
@@ -133,13 +137,8 @@ export function UserAvatar({ onClick }) {
         sx={{
           width: 36,
           height: 36,
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          bgcolor: '#eee',
-          color: '#222',
-          fontWeight: 700,
-          margin: '3px',
+          position: 'relative',
+          justifyContent: 'center',
           border: isHover ? '0.5px solid rgba(64, 255, 0, 0.28)' : '2px solid transparent',
           boxShadow: isHover
             ? '0 0 3px 1px rgb(64, 220, 255)'
@@ -161,40 +160,90 @@ export function UserAvatar({ onClick }) {
   );
 }
 
-export function UserMenu({ anchorEl, open, onClose }) {
+function MobileIcons() {
   return (
-    <Menu
-      sx={{
-        mt: '45px',
-        '& .MuiPaper-root': { bgcolor: '#fff', boxShadow: '0 2px 8px #eee' }
-      }}
-      id="menu-appbar"
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={open}
-      onClose={onClose}
-    >
-    </Menu>
+      <Box sx={{ display: 'flex', gap: 1,  width: '100%', alignItems: 'center' }} >
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <IconButton
+          component="a"
+          href={Youtube}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            width: 30, height: 30, p: 0.5,
+                        
+            border: '2px solid #d32f2f',
+            color: '#d32f2f',
+            background: '#fff',
+            boxShadow: '0 0 4px #ffbaba',
+            '&:hover': {
+              transform: 'scale(1.16) rotate(-18deg)',
+              boxShadow: '0 0 18px #ff5252',
+            },
+            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
+          }}
+        >
+          <YouTubeIcon fontSize="small" />
+        </IconButton>
+        <Typography sx={{ fontSize: 10, color: '#d32f2f', mt: '2px', fontWeight: 600 }}>YouTube</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <IconButton
+          component="a"
+          href={Resume}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            width: 30, height: 30, p: 0.5,
+            border: '2px solid #4b59f7',
+            color: '#4b59f7',
+            background: '#fff',
+            boxShadow: '0 0 4px #a3a6f7',
+            '&:hover': {
+              transform: 'scale(1.16) rotate(16deg)',
+              boxShadow: '0 0 18px #4657e1',
+            },
+            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
+          }}
+        >
+          <PictureAsPdfIcon fontSize="small" />
+        </IconButton>
+        <Typography sx={{ fontSize: 10, color: '#4b59f7', mt: '2px', fontWeight: 600 }}>Resume</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <IconButton
+          component="a"
+          href={LinkedIn}
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            width: 30, height: 30, p: 0.5,
+            border: '2px solid #1976d2',
+            color: '#1976d2',
+            background: '#fff',
+            boxShadow: '0 0 4px #bbd8fd',
+            '&:hover': {
+              transform: 'scale(1.16) rotate(12deg)',
+              boxShadow: '0 0 18px #2196f3',
+            },
+            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
+          }}
+        >
+          <LinkedInIcon fontSize="small" />
+        </IconButton>
+        <Typography sx={{ fontSize: 10, color: '#1976d2', mt: '2px', fontWeight: 600 }}>LinkedIn</Typography>
+      </Box>
+    </Box>
   );
 }
 
-const pages = [
-  { name: 'Portfolio', href: Portfolio },
-  { name: 'Resume', href: Resume },
-  { name: 'LinkedIn', href: LinkedIn }
-];
-
-
 // Main function
-
 export default function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
-
+  const isMedium = useMediaQuery('(max-width:995px)');
+  const isSmall = useMediaQuery('(max-width:571px)');
   return (
     <AppBar
       position="static"
@@ -204,6 +253,7 @@ export default function ResponsiveAppBar() {
         borderBottom: '1px solid #e0e0e0',
         color: '#222',
         width: '100vw',
+
       }}
     >
       <Toolbar
@@ -215,15 +265,29 @@ export default function ResponsiveAppBar() {
           px: '2vw'
         }}
       >
-        <LeftTopBarSection />
+        <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
+          <TopLogoIcon />
+          <TopNameOwner isMedium={isMedium} isSmall={isSmall} />
+          {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'right' }} />}
+        </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <TopPageButtons pages={pages} />
+          {!isSmall && <TopPageButtons pages={pages} />}
+          {isSmall && 
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',  
+                justifyContent: 'flex-end', 
+                alignItems: 'center',    
+                height: 56, 
+                width: '100%',
+                gap: 1
+              }}
+            >
+              <MobileIcons />
+            </Box>
+          }
           <UserAvatar onClick={handleOpenUserMenu} />
-          <UserMenu
-            anchorEl={anchorElUser}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          />
         </Box>
       </Toolbar>
     </AppBar>
