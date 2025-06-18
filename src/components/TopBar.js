@@ -13,10 +13,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import {LinkedIn, Youtube, Resume, AvatarPic, LogoPic, OwnerName} from '../personal_info.js';
 import {TopBarIntro} from '../personal_info.js';
 
+//NOTE: FIX HERE
+
 const pages = [
-  { name: 'Youtube', href: Youtube },
-  { name: 'Resume', href: Resume },
-  { name: 'LinkedIn', href: LinkedIn }
+  { name: 'Home', href: '' },
+  { name: 'Portfolios', href: '' },
+  { name: 'Resume', href: Resume }
 ];
 
 function TopLogoIcon() {
