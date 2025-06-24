@@ -1,9 +1,3 @@
-
-
-
-
-
-
 export default function AboutMeSection(){
     return(
         <div className="AboutMeSection">

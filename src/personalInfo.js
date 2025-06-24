@@ -1,0 +1,10 @@
+export const LinkedIn = 'https://www.linkedin.com/in/cedrusdang/'
+export const Youtube = 'https://www.youtube.com/@CedrusDang'
+export const Resume = '/Resume.pdf'
+export const AvatarPic = "/avatar.jpg"
+export const logoPic = "/DSlogo.png"
+export const ownerName = "Cedrus Dang"
+export const GitHubURL = "https://github.com/cedrusdang"
+export const YouTubeURL = "/"
+export const LinkedInURL = "https://www.linkedin.com/in/cedrusdang/"
+export const topbarIntro = "A Data, AI Science & Engineering Portfolio"

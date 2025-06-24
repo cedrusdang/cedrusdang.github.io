@@ -3,29 +3,23 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import IconButton from '@mui/material/IconButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {LinkedIn, Youtube, Resume, AvatarPic, LogoPic, OwnerName} from '../personal_info.js';
-import {TopBarIntro} from '../personal_info.js';
-
-//NOTE: FIX HERE
+import {logoPic, ownerName} from '../personalInfo.js';
+import {topbarIntro} from '../personalInfo.js';
+import UserAvatar from './TopBarUserAvatar.js';
 
 const pages = [
-  { name: 'Home', href: '' },
-  { name: 'Portfolios', href: '' },
-  { name: 'Resume', href: Resume }
+  { name: 'Resume', href: '/' },
+  { name: 'Projects', href: '/Projects' },
+  { name: 'About', href: '/About' }
 ];
 
 function TopLogoIcon() {
   return (
     <Box
       component="img"
-      src={LogoPic}
+      src={logoPic}
       alt="Logo"
       sx={{
         height: 32,
@@ -55,10 +49,9 @@ function TopNameOwner({ isSmall }) {
         letterSpacing: 0,
         textDecoration: 'none',
         fontFamily: 'Inter, monospace',
-        lineHeight: 1,
       }}
     >
-      {OwnerName}
+      {ownerName}
     </Typography>
   );
 }
@@ -74,11 +67,11 @@ function TopPortfolioIntro() {
         fontSize: 22,
         letterSpacing: 0,
         textDecoration: 'none',
-        fontFamily: '"Font Awesome 5 Free", sans-serif',
-        ml: 2,
+        fontFamily: '"Times New Roman", Times, serif',
+        ml: 2
       }}
     >
-      {TopBarIntro}
+      {topbarIntro}
     </Typography>
   );
 }
@@ -93,7 +86,6 @@ function TopPageButtons({ pages }) {
           target={page.href.startsWith('http') ? '_blank' : undefined}
           rel={page.href.startsWith('http') ? 'noopener noreferrer' : undefined}
           variant="outlined"
-          target="_blank"
           sx={{
             color: '#333',
             borderColor: '#dedede',
@@ -115,145 +107,16 @@ function TopPageButtons({ pages }) {
   );
 }
 
-function UserAvatar({ onClick }) {
-  const [isClicked, setClicked] = React.useState(false);
 
-  const handleAvatarClick = (e) => {
-    // Click 1st scalex3, 2nd scalex1
-    if (!isClicked) {
-      setClicked(true);
-    } else {
-      setClicked(false); 
-      if (onClick) onClick(e); 
-    }
-  };
-
-  return (
-    <Box
-      sx={{
-        width: 52,
-        height: 52,
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        margin: '1px',
-      }}
-      onClick={handleAvatarClick}
-    >
-      <Avatar
-        alt="User"
-        src={AvatarPic}
-        sx={{
-          width: 36,
-          height: 36,
-          position: 'relative',
-          justifyContent: 'center',
-          border: isClicked ? '0.5px solid rgba(64, 255, 0, 0.28)' : '2px solid transparent',
-          boxShadow: isClicked
-            ? '0 0 12px 2px rgb(64, 220, 255)'
-            : '0 0 0 0 rgba(56,180,255,0)',
-          transform: isClicked
-            ? 'scale(3) translateX(-10px) translateY(10px)'
-            : 'none',
-          transition: 'transform 1s cubic-bezier(.4,2,.6,1), box-shadow 0.18s, border 0.18s, margin 0.18s',
-          cursor: 'pointer',
-          zIndex: 10,
-          animation: !isClicked ? 'avatar-blink 1s infinite ease-in-out alternate' : 'none',
-          '@keyframes avatar-blink': {
-            '0%':   { filter: 'drop-shadow(0 0 0px rgb(13, 140, 245))' },
-            '100%': { filter: 'drop-shadow(0 0 3px rgb(41, 246, 89))' }
-          }
-        }}
-      />
-    </Box>
-  );
-}
-
-function MobileIcons() {
-  return (
-      <Box sx={{ display: 'flex', gap: 1,  width: '100%', alignItems: 'center' }} >
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <IconButton
-          component="a"
-          href={Youtube}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{
-            width: 30, height: 30, p: 0.5,
-                        
-            border: '2px solid #d32f2f',
-            color: '#d32f2f',
-            background: '#fff',
-            boxShadow: '0 0 4px #ffbaba',
-            '&:hover': {
-              transform: 'scale(1.16) rotate(-18deg)',
-              boxShadow: '0 0 18px #ff5252',
-            },
-            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
-          }}
-        >
-          <YouTubeIcon fontSize="small" />
-        </IconButton>
-        <Typography sx={{ fontSize: 10, color: '#d32f2f', mt: '2px', fontWeight: 600 }}>YouTube</Typography>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <IconButton
-          component="a"
-          href={Resume}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{
-            width: 30, height: 30, p: 0.5,
-            border: '2px solid #4b59f7',
-            color: '#4b59f7',
-            background: '#fff',
-            boxShadow: '0 0 4px #a3a6f7',
-            '&:hover': {
-              transform: 'scale(1.16) rotate(16deg)',
-              boxShadow: '0 0 18px #4657e1',
-            },
-            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
-          }}
-        >
-          <PictureAsPdfIcon fontSize="small" />
-        </IconButton>
-        <Typography sx={{ fontSize: 10, color: '#4b59f7', mt: '2px', fontWeight: 600 }}>Resume</Typography>
-      </Box>
-      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <IconButton
-          component="a"
-          href={LinkedIn}
-          target="_blank"
-          rel="noopener noreferrer"
-          sx={{
-            width: 30, height: 30, p: 0.5,
-            border: '2px solid #1976d2',
-            color: '#1976d2',
-            background: '#fff',
-            boxShadow: '0 0 4px #bbd8fd',
-            '&:hover': {
-              transform: 'scale(1.16) rotate(12deg)',
-              boxShadow: '0 0 18px #2196f3',
-            },
-            transition: 'all 0.4s cubic-bezier(.4,2,.6,1)',
-          }}
-        >
-          <LinkedInIcon fontSize="small" />
-        </IconButton>
-        <Typography sx={{ fontSize: 10, color: '#1976d2', mt: '2px', fontWeight: 600 }}>LinkedIn</Typography>
-      </Box>
-    </Box>
-  );
-}
 
 // Main function
-export default function ResponsiveAppBar() {
+export default function TopAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
   const handleCloseUserMenu = () => setAnchorElUser(null);
   const isMedium = useMediaQuery('(max-width:995px)');
   const isSmall = useMediaQuery('(max-width:571px)');
+  const isS_Small = useMediaQuery('(max-width:425px)');
   return (
     <AppBar
       position="static"
@@ -277,24 +140,21 @@ export default function ResponsiveAppBar() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
           <TopLogoIcon />
-          <TopNameOwner isMedium={isMedium} isSmall={isSmall} />
+          {!isS_Small && <TopNameOwner isMedium={isMedium} isSmall={isSmall} />}
           {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'right' }} />}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          {!isSmall && <TopPageButtons pages={pages} />}
-          {isSmall && 
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',  
-                justifyContent: 'flex-end', 
-                alignItems: 'center',    
-                height: 56, 
-                width: '100%',
-                gap: 1
-              }}
-            >
-              <MobileIcons />
+          {!isS_Small && <TopPageButtons pages={pages} />}
+          {isS_Small &&
+            <Box sx={{ 
+              display: 'grid', 
+              gridTemplateColumns: '1fr 1fr 1fr', 
+              gap: 1, 
+              margin: '3 px', 
+              height: '1hw',
+              transform: 'scale(0.85)',
+               }}>
+              {isSmall && <TopPageButtons pages={pages} />}
             </Box>
           }
           <UserAvatar onClick={handleOpenUserMenu} />
