@@ -1,19 +1,47 @@
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {logoPic, ownerName} from '../personalInfo.js';
-import {topbarIntro} from '../personalInfo.js';
-import UserAvatar from './TopBarUserAvatar.js';
+import { FormGroup, FormControlLabel, Switch } from '@mui/material';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import { Link } from 'react-router-dom';
+
+import {ownerName} from '../infomation/Info.js';
+import {topbarIntro} from '../infomation/Info.js';
+
+const logoPic = "/images/DSlogo.png"
 
 const pages = [
   { name: 'Resume', href: '/' },
   { name: 'Projects', href: '/Projects' },
-  { name: 'About', href: '/About' }
 ];
+
+function DarkLightBtn({ darkMode, setDarkMode }) {
+  return (
+    <FormGroup
+      sx={{
+        flexWrap: 'nowrap',
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: '0px'
+      }}
+    >
+      <FormControlLabel
+        control={
+          <Switch
+            checked={darkMode}
+            onChange={e => setDarkMode(e.target.checked)}
+          />
+        }
+        label={darkMode ? <DarkModeOutlinedIcon/> : <DarkModeIcon/>}
+        sx={{ margin: '0px' }}
+      />
+    </FormGroup>
+  );
+}
 
 function TopLogoIcon() {
   return (
@@ -40,36 +68,35 @@ function TopNameOwner({ isSmall }) {
   return (
     <Typography
       Wrap
-      component="a"
-      href="/"
-      sx={{
+      component={Link}
+      to="/"
+      sx={theme => ({
         fontWeight: 800,
-        color: '#222',
+        color: theme.palette.mode === 'dark' ? '#f3f6fa' : '#222',
         fontSize,
         letterSpacing: 0,
         textDecoration: 'none',
         fontFamily: 'Inter, monospace',
-      }}
+      })}
     >
       {ownerName}
     </Typography>
   );
 }
 
-
 function TopPortfolioIntro() {
   return (
     <Typography
       component="a"
-      sx={{
+      sx={theme => ({
         fontWeight: 500,
-        color: '#222',
+        color: theme.palette.mode === 'dark' ? '#e0e4ea' : '#222',
         fontSize: 22,
         letterSpacing: 0,
         textDecoration: 'none',
         fontFamily: '"Times New Roman", Times, serif',
         ml: 2
-      }}
+      })}
     >
       {topbarIntro}
     </Typography>
@@ -79,85 +106,92 @@ function TopPortfolioIntro() {
 function TopPageButtons({ pages }) {
   return (
     <>
-      {pages.map((page) => (
-        <Button
-          key={page.name}
-          href={page.href}
-          target={page.href.startsWith('http') ? '_blank' : undefined}
-          rel={page.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          variant="outlined"
-          sx={{
-            color: '#333',
-            borderColor: '#dedede',
-            background: '#fff',
-            boxShadow: 'none',
-            fontWeight: 500,
-            textTransform: 'none',
-            fontFamily: 'Inter',
-            '&:hover': {
-              borderColor: '#bdbdbd',
-              bgcolor: '#f4f4f4'
-            }
-          }}
-        >
-          {page.name}
-        </Button>
-      ))}
+      {pages.map((page) => {
+        const isExternal = page.href.startsWith('http');
+        return (
+          <Button
+            key={page.name}
+            component={isExternal ? 'a' : Link}
+            {...(
+              isExternal
+                ? {
+                    href: page.href,
+                    target: '_blank',
+                    rel: 'noopener noreferrer'
+                  }
+                : { to: page.href }
+            )}
+            variant="outlined"
+            sx={theme => ({
+              color: theme.palette.mode === 'dark' ? '#f3f6fa' : '#333',
+              borderColor: theme.palette.mode === 'dark' ? '#393a40' : '#dedede',
+              background: theme.palette.mode === 'dark' ? '#23242a' : '#fff',
+              boxShadow: 'none',
+              fontWeight: 500,
+              textTransform: 'none',
+              fontFamily: 'Inter',
+              '&:hover': {
+                borderColor: theme.palette.mode === 'dark' ? '#8e8e8e' : '#bdbdbd',
+                bgcolor: theme.palette.mode === 'dark' ? '#33354a' : '#f4f4f4'
+              }
+            })}
+          >
+            {page.name}
+          </Button>
+        );
+      })}
     </>
   );
 }
 
 
-
 // Main function
-export default function TopAppBar() {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const handleOpenUserMenu = (event) => setAnchorElUser(event.currentTarget);
-  const handleCloseUserMenu = () => setAnchorElUser(null);
+export default function TopAppBar({darkMode, setDarkMode}) {
+
   const isMedium = useMediaQuery('(max-width:995px)');
   const isSmall = useMediaQuery('(max-width:571px)');
-  const isS_Small = useMediaQuery('(max-width:425px)');
+  const isS_Small = useMediaQuery('(max-width:478px)');
   return (
     <AppBar
       position="static"
       elevation={0}
-      sx={{
-        bgcolor: '#fafbfc',
-        borderBottom: '1px solid #e0e0e0',
-        color: '#222',
+      sx={theme => ({
+        bgcolor: theme.palette.mode === 'dark' ? '#23242a' : '#fafbfc',
+        borderBottom: '1px solid',
+        borderColor: theme.palette.mode === 'dark' ? '#323232' : '#e0e0e0',
+        color: theme.palette.mode === 'dark' ? '#f3f6fa' : '#222',
         width: '100vw',
-
-      }}
+      })}
     >
       <Toolbar
         disableGutters
         sx={{
-          width: '95vw',
+          width: '100vw',
           height: '3.5rem',
           minHeight: '3.5rem !important',
-          px: '2vw'
+          px: '5vw'
         }}
       >
+        
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
           <TopLogoIcon />
           {!isS_Small && <TopNameOwner isMedium={isMedium} isSmall={isSmall} />}
-          {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'right' }} />}
+          {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'center' }} />}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {!isS_Small && <TopPageButtons pages={pages} />}
           {isS_Small &&
             <Box sx={{ 
               display: 'grid', 
-              gridTemplateColumns: '1fr 1fr 1fr', 
+              gridTemplateColumns: '1fr 1fr', 
               gap: 1, 
-              margin: '3 px', 
               height: '1hw',
               transform: 'scale(0.85)',
                }}>
               {isSmall && <TopPageButtons pages={pages} />}
             </Box>
           }
-          <UserAvatar onClick={handleOpenUserMenu} />
+          <DarkLightBtn darkMode={darkMode} setDarkMode={setDarkMode} />
         </Box>
       </Toolbar>
     </AppBar>

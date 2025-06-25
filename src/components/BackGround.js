@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useTheme } from '@mui/material/styles';
 
 function randomStars(n) {
   return Array.from({ length: n }).map((_, i) => ({
@@ -12,6 +13,7 @@ function randomStars(n) {
 
 export default function GalaxyBackground() {
   const [stars, setStars] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
     function updateStars() {
@@ -22,7 +24,8 @@ export default function GalaxyBackground() {
     updateStars();
     window.addEventListener("resize", updateStars);
     return () => window.removeEventListener("resize", updateStars);
-  }, []);
+  }, [theme.palette.mode]);
+  
 
   return (
     <div style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh", zIndex: -1 }}>
@@ -34,7 +37,7 @@ export default function GalaxyBackground() {
           width: star.size,
           height: star.size,
           borderRadius: "50%",
-          background: "#fff",
+          background: '#e0e4ea',
           opacity: star.opacity,
           boxShadow: "0 0 8px 2px #fff",
           pointerEvents: "none"

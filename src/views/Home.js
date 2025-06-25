@@ -1,7 +1,5 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import { useTheme  } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import { Typography } from '@mui/material';
@@ -9,21 +7,13 @@ import FileOpenIcon from '@mui/icons-material/FileOpen';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import PortfolioBoxes from '../components/PortfolioBoxes.js';
+import StyledPaper from '../components/StyledPaper.js';
 
-import { homeIntro, userIntro} from '../../texts/Intro.js';
-import {AvatarPic, ownerName, GitHubURL, LinkedInURL, YouTubeURL} from '../../personalInfo.js';
+import { homeIntro, userIntro, skillSets} from '../infomation/Intro.js';
+import {ownerName, GitHubURL, LinkedInURL} from '../infomation/Info.js';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
+const AvatarPic = "../../images/avatar.jpg"
 
 function ViewResumePDF({ url, sx }) {
   return (
@@ -34,46 +24,55 @@ function ViewResumePDF({ url, sx }) {
       rel="noopener noreferrer"
       variant="contained"
       startIcon={<FileOpenIcon />}
-      sx= {{marginLeft: '0.5vw', marginRight: '0.5vw'}}
+      sx= {{marginLeft: '0.5rem', marginRight: '0.5rem'}}
     >
       Resume
     </Button>
   );
 }
 
-function IconRework({ url, type }) {
-  // Mapping từ type sang icon và màu
-  const iconConfig = {
+function SocialIconRework({ url, type, newTab = false }) {
+    // For light mode
+  const iconConfigLight = { 
     github: {
       icon: GitHubIcon,
-      color: '#181717',
-    },
+      color: '#222'
+    },        
     linkedin: {
       icon: LinkedInIcon,
-      color: '#0A66C2',
-    },
-    youtube: {
-      icon: YouTubeIcon,
-      color: '#FF0000',
+      color: '#0A66C2'
     },
   };
-
+  // For dark mode
+  const iconConfigDark = { 
+    github: {
+      icon: GitHubIcon,
+      color: '#f3f6fa'
+    },        
+    linkedin: {
+      icon: LinkedInIcon,
+      color: '#59a7f5'
+    },
+  };
+  
+  const theme = useTheme();
+  const iconConfig = theme.palette.mode === 'dark' ? iconConfigDark : iconConfigLight;
   const { icon: IconComponent, color } = iconConfig[type] || iconConfig.github;
 
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={newTab ? "_blank" : "_self"}
+      rel={newTab ? "noopener noreferrer" : undefined}
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        marginLeft: '0.5vw',
-        marginRight: '0.5vw',
+        marginLeft: '0.5rem',
+        marginRight: '0.5rem',
         transition: 'transform 0.1s',
         outline: 'none',
         cursor: 'pointer',
-        height: 40, // căn đều với button
+        height: 40,
       }}
       tabIndex={0}
       onMouseDown={e => e.currentTarget.style.transform = 'scale(0.90)'}
@@ -117,15 +116,14 @@ function IconRework({ url, type }) {
 
 function AvatarBox(){
   return(
-    
-      <Item> 
-        <Item>
+      <StyledPaper> 
+        <StyledPaper>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Avatar src={AvatarPic} alt="Avatar" sx={{ 
-                  margin: '1vh 1vw 0 1vw', 
+                  margin: '0.5rem 0.5rem 0 0.5rem', 
                   width: '20vh', 
                   height: '20vh', 
-                  border: '4px solid rgba(17, 62, 241, 0.47)', 
+                  border: '0.2rem solid rgba(17, 62, 241, 0.47)', 
                   boxShadow: '0 0 0 2px rgba(9, 17, 246, 0.76)', 
                   }} 
               />
@@ -143,40 +141,79 @@ function AvatarBox(){
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center', 
-            flexWrap: 'wrap',
-            margin:'0vh 0 0.5vh 0'}}>
-            <Box sx={{margin:'1vh 1vw 0 1vw'}}>
+            flexDirection: 'column',
+            margin:'0vh 0 0 0'}}>
+            <Box sx={{margin:'1rem 0 0 0'}}>
               <ViewResumePDF url='/Resume.pdf' />
             </Box>
-            <Box sx={{margin:'1vh 1vw 0 1vw'}}>
-              <IconRework url={GitHubURL} type="github" />
-              <IconRework url={LinkedInURL} type="linkedin" />
-              <IconRework url={YouTubeURL} type="youtube" />
+            <Box sx={{margin:'1rem 0 0 0'}}>
+              <SocialIconRework url={GitHubURL} type="github" />
+              <SocialIconRework url={LinkedInURL} type="linkedin" />
             </Box>
-
           </Box>
+      </StyledPaper>
+    </StyledPaper>
+  );
+}
 
-      </Item>
-    </Item>
+function SkillsBox(){
+  return(
+    <StyledPaper>
+      <StyledPaper>
+        <Box sx={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Skills</Box>
+        {skillSets}
+      </StyledPaper>
+    </StyledPaper>
+  );
+}
+
+function LeftBox(){
+  return (
+    <>
+      <Box>
+        <AvatarBox/>
+      </Box>
+      <Box sx={{marginTop: '0.5rem'}}>
+        <SkillsBox/>
+      </Box>
+    </>
+  );
+}
+
+function ResumeBox(){
+  return(
+    <StyledPaper>
+      <StyledPaper sx={{ textAlign: 'justify'}}>
+        {homeIntro}
+      </StyledPaper>
+    </StyledPaper>
+  )
+}
+
+function RightBox(){
+  return (
+    <>
+      <Box>
+        <ResumeBox/>
+      </Box>
+      <Box>
+        <PortfolioBoxes/>
+      </Box>
+    </>
   );
 }
 
 function HomeBoxes() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
       <Grid container spacing={2}>
 
-        <Grid size={{ xs: 12, sm: 4 }}> 
-          <AvatarBox/>
+        <Grid size={{ xs: 12, md: 4 }}> 
+          <LeftBox/>
         </Grid>
 
-        <Grid size={{ xs: 12, sm: 8 }}>
-          <Item>
-              <Item sx={{ textAlign: 'justify'}}>
-                {homeIntro}
-              </Item>
-              
-          </Item>
+        <Grid size={{ xs: 12, md: 8 }}>
+          <RightBox/>
         </Grid>
 
       </Grid>

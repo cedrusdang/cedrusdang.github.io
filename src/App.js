@@ -1,29 +1,67 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import './App.css';
-import './index.css';
 import GalaxyBackground from './components/BackGround.js';
 import TopAppBar from './components/TopBar.js';
 import Box from '@mui/material/Box';
+import { useState, useMemo } from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { GlobalStyles, useTheme } from '@mui/material';
 
-import Home from './views/Home/Home_Main.js';
-import About from './views/About/About_Main.js';
-import Projects from './views/Projects/Projects_Main.js';
+import About from './views/Home.js';
+import Projects from './views/Projects.js';
 
+function AppGlobalStyles() {
+  const theme = useTheme();
+  return (
+    <GlobalStyles styles={{
+      body: {
+        background: theme.palette.mode === 'dark'
+          ? 'radial-gradient(circle at 70% 50%,rgb(49, 31, 56),rgb(22, 20, 26))'
+          : 'radial-gradient(circle at 70% 50%, #e8a738, #e88438)',
+        color: theme.palette.text.primary,
+        margin: 0,
+        fontFamily: theme.typography.fontFamily,
+      },
+      code: {
+        fontFamily: 'source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace'
+      }
+    }}/>
+  );
+}
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: {mode: darkMode ? "dark" : "light"},
+      }),
+    [darkMode]
+  );
+
   return (
-    <Router>
-      <GalaxyBackground />
-      <TopAppBar />
-      <Box sx={{ padding: '2vh 2vw 0 2vw', maxWidth: 'lg', mx: 'auto'}}>
-        <Routes sx={{margin:'2px'}}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-        </Routes>
-      </Box>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <AppGlobalStyles />
+        <GalaxyBackground/>
+        <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Box sx={{ 
+          p: { xs: 1.5, md: 2}, 
+          maxWidth: 'lg', 
+          mx: 'auto'
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+          </Routes>
+        </Box>
+      </Router>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
+
