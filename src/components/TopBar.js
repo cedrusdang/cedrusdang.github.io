@@ -2,22 +2,16 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { FormGroup, FormControlLabel, Switch } from '@mui/material';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Link } from 'react-router-dom';
 
-import {ownerName} from '../infomation/Info.js';
-import {topbarIntro} from '../infomation/Info.js';
+import {ownerName} from '../data/info.js';
+import {topbarIntro} from '../data/info.js';
 
 const logoPic = "/images/DSlogo.png"
-
-const pages = [
-  { name: 'Resume', href: '/' },
-  { name: 'Projects', href: '/Projects' },
-];
 
 function DarkLightBtn({ darkMode, setDarkMode }) {
   return (
@@ -103,54 +97,13 @@ function TopPortfolioIntro() {
   );
 }
 
-function TopPageButtons({ pages }) {
-  return (
-    <>
-      {pages.map((page) => {
-        const isExternal = page.href.startsWith('http');
-        return (
-          <Button
-            key={page.name}
-            component={isExternal ? 'a' : Link}
-            {...(
-              isExternal
-                ? {
-                    href: page.href,
-                    target: '_blank',
-                    rel: 'noopener noreferrer'
-                  }
-                : { to: page.href }
-            )}
-            variant="outlined"
-            sx={theme => ({
-              color: theme.palette.mode === 'dark' ? '#f3f6fa' : '#333',
-              borderColor: theme.palette.mode === 'dark' ? '#393a40' : '#dedede',
-              background: theme.palette.mode === 'dark' ? '#23242a' : '#fff',
-              boxShadow: 'none',
-              fontWeight: 500,
-              textTransform: 'none',
-              fontFamily: 'Inter',
-              '&:hover': {
-                borderColor: theme.palette.mode === 'dark' ? '#8e8e8e' : '#bdbdbd',
-                bgcolor: theme.palette.mode === 'dark' ? '#33354a' : '#f4f4f4'
-              }
-            })}
-          >
-            {page.name}
-          </Button>
-        );
-      })}
-    </>
-  );
-}
 
 
 // Main function
 export default function TopAppBar({darkMode, setDarkMode}) {
 
-  const isMedium = useMediaQuery('(max-width:995px)');
+  const isMedium = useMediaQuery('(max-width:750px)');
   const isSmall = useMediaQuery('(max-width:571px)');
-  const isS_Small = useMediaQuery('(max-width:478px)');
   return (
     <AppBar
       position="static"
@@ -175,23 +128,11 @@ export default function TopAppBar({darkMode, setDarkMode}) {
         
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
           <TopLogoIcon />
-          {!isS_Small && <TopNameOwner isMedium={isMedium} isSmall={isSmall} />}
+          <TopNameOwner isSmall={isSmall} />
           {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'center' }} />}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          {!isS_Small && <TopPageButtons pages={pages} />}
-          {isS_Small &&
-            <Box sx={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1fr', 
-              gap: 1, 
-              height: '1hw',
-              transform: 'scale(0.85)',
-               }}>
-              {isSmall && <TopPageButtons pages={pages} />}
-            </Box>
-          }
-          <DarkLightBtn darkMode={darkMode} setDarkMode={setDarkMode} />
+        <DarkLightBtn darkMode={darkMode} setDarkMode={setDarkMode} />
         </Box>
       </Toolbar>
     </AppBar>

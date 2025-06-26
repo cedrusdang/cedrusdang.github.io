@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GalaxyBackground from './components/BackGround.js';
-import TopAppBar from './components/TopBar.js';
+import GalaxyBackground from './components/backGround.js';
+import TopAppBar from './components/topBar.js';
 import Box from '@mui/material/Box';
 import { useState, useMemo } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { GlobalStyles, useTheme } from '@mui/material';
 
-import About from './views/Home.js';
-import Projects from './views/Projects.js';
+import About from './views/home.js';
+import Projects from './views/projects.js';
 
 function AppGlobalStyles() {
   const theme = useTheme();

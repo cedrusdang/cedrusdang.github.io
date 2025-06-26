@@ -36,11 +36,29 @@ export default function ReviewCard({title, subheader, image, description, techSt
         title={title}
         subheader={techStack}
       />
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: '#fff', 
+        height: '40vh',    
+        overflow: 'hidden'
+      }}>
       <CardMedia
         component="img"
         image={image}
         alt={image}
+        loading='lazy'
+        sx={{
+          maxHeight: '40vh',
+          maxWidth: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: '0.5rem',
+          objectFit: 'contain',
+         }}
       />
+      </Box>
       <CardContent>
         <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'justify' }}>
           {description}

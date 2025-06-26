@@ -1,4 +1,4 @@
-import GridBoxes from '../components/PortfolioBoxes.js'
+import GridBoxes from '../components/portfolioBoxes.js'
 
 export default function Projects() {
     return (

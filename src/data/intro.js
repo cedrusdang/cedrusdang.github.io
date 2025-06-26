@@ -6,8 +6,31 @@ export const userIntro = `
 MS in Data Science (UWA) 
 | Aspiring Full-Stack AI/Data Engineer & Scientist 
 | Passionate about AI, ML, Data Science & Engineering 
-`
+`;
 
-export const skillSets = `
-sdsds | sdsds | sdsds | sdsds | sdsds | sdsds
-`
+export const skillSets = [
+    {
+        "category": "Data Science",
+        "skills": "Machine Learning|Deep Learning|NLP|Computer Vision|Data Analysis|Data Storytelling"
+    },  
+    {
+        "category": "Data Engineering",
+        "skills": "Data ETL|Data Warehousing|Cloud Computing|IoT|Web Development"
+    },
+    {
+        "category": "Programming Languages",
+        "skills": "Python|R|C/C++|Bash/Shell|SQL/Cypher|HTML|CSS|JavaScript"
+    },
+    {
+        "category": "Tools & Platforms",
+        "skills": "JupyterLab|Power BI/Tableau|MySQL|PostgreSQL|Neo4j|Linux|GitHub|Docker|AWS"
+    },
+    {
+        "category": "Libraries & Frameworks",
+        "skills": "NumPy|Pandas|Scikit-learn|Matplotlib|Seaborn|TensorFlow|PyTorch|LangChain|AIGen API Engineering|React"
+    },
+    {
+        "category": "Economics & Statistics",
+        "skills": "Statistical Analysis|Financial Analysis|Logistics & Supply Chain Management"
+    }
+];

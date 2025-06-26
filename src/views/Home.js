@@ -1,171 +1,14 @@
-import { useTheme  } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
-import { Typography } from '@mui/material';
-import FileOpenIcon from '@mui/icons-material/FileOpen';
-import Button from '@mui/material/Button';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import PortfolioBoxes from '../components/PortfolioBoxes.js';
-import StyledPaper from '../components/StyledPaper.js';
 
-import { homeIntro, userIntro, skillSets} from '../infomation/Intro.js';
-import {ownerName, GitHubURL, LinkedInURL} from '../infomation/Info.js';
+import PortfolioBoxes from '../components/portfolioBoxes.js';
+import StyledPaper from '../components/styledPaper.js';
+import 'boxicons/css/boxicons.min.css'
 
-const AvatarPic = "../../images/avatar.jpg"
+import {homeIntro} from '../data/intro.js';
 
-function ViewResumePDF({ url, sx }) {
-  return (
-    <Button
-      component="a"
-      target="_blank"
-      href={url}
-      rel="noopener noreferrer"
-      variant="contained"
-      startIcon={<FileOpenIcon />}
-      sx= {{marginLeft: '0.5rem', marginRight: '0.5rem'}}
-    >
-      Resume
-    </Button>
-  );
-}
-
-function SocialIconRework({ url, type, newTab = false }) {
-    // For light mode
-  const iconConfigLight = { 
-    github: {
-      icon: GitHubIcon,
-      color: '#222'
-    },        
-    linkedin: {
-      icon: LinkedInIcon,
-      color: '#0A66C2'
-    },
-  };
-  // For dark mode
-  const iconConfigDark = { 
-    github: {
-      icon: GitHubIcon,
-      color: '#f3f6fa'
-    },        
-    linkedin: {
-      icon: LinkedInIcon,
-      color: '#59a7f5'
-    },
-  };
-  
-  const theme = useTheme();
-  const iconConfig = theme.palette.mode === 'dark' ? iconConfigDark : iconConfigLight;
-  const { icon: IconComponent, color } = iconConfig[type] || iconConfig.github;
-
-  return (
-    <a
-      href={url}
-      target={newTab ? "_blank" : "_self"}
-      rel={newTab ? "noopener noreferrer" : undefined}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        marginLeft: '0.5rem',
-        marginRight: '0.5rem',
-        transition: 'transform 0.1s',
-        outline: 'none',
-        cursor: 'pointer',
-        height: 40,
-      }}
-      tabIndex={0}
-      onMouseDown={e => e.currentTarget.style.transform = 'scale(0.90)'}
-      onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
-      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-      onKeyDown={e => {
-        if (e.key === ' ' || e.key === 'Enter') e.currentTarget.style.transform = 'scale(0.90)';
-      }}
-      onKeyUp={e => e.currentTarget.style.transform = 'scale(1)'}
-    >
-      <IconComponent
-        sx={{
-          fontSize: 36,
-          color,
-          transition: 'transform 0.1s, filter 0.2s',
-          '&:hover': {
-            animation: 'github-shake 1s',
-            filter: 'brightness(1.2)',
-          },
-          '&:active': {
-            filter: 'brightness(0.7)',
-          }
-        }}
-      />
-      <style>
-        {`
-          @keyframes github-shake {
-            10% { transform: rotate(-8deg) scale(1.1); }
-            20% { transform: rotate(8deg) scale(1.1); }
-            30% { transform: rotate(-5deg) scale(1.08); }
-            40% { transform: rotate(5deg) scale(1.08); }
-            50% { transform: rotate(-2deg); }
-            60% { transform: rotate(2deg); }
-            70% { transform: rotate(0deg); }
-          }
-        `}
-      </style>
-    </a>
-  );
-}
-
-function AvatarBox(){
-  return(
-      <StyledPaper> 
-        <StyledPaper>
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Avatar src={AvatarPic} alt="Avatar" sx={{ 
-                  margin: '0.5rem 0.5rem 0 0.5rem', 
-                  width: '20vh', 
-                  height: '20vh', 
-                  border: '0.2rem solid rgba(17, 62, 241, 0.47)', 
-                  boxShadow: '0 0 0 2px rgba(9, 17, 246, 0.76)', 
-                  }} 
-              />
-          </Box>   
-          <h2>{ownerName}</h2>
-
-          <Box sx={{ textAlign: 'center'}}>
-            <Typography>
-              {userIntro}
-            </Typography>
-            
-          </Box>
-
-          <Box sx={{
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            flexDirection: 'column',
-            margin:'0vh 0 0 0'}}>
-            <Box sx={{margin:'1rem 0 0 0'}}>
-              <ViewResumePDF url='/Resume.pdf' />
-            </Box>
-            <Box sx={{margin:'1rem 0 0 0'}}>
-              <SocialIconRework url={GitHubURL} type="github" />
-              <SocialIconRework url={LinkedInURL} type="linkedin" />
-            </Box>
-          </Box>
-      </StyledPaper>
-    </StyledPaper>
-  );
-}
-
-function SkillsBox(){
-  return(
-    <StyledPaper>
-      <StyledPaper>
-        <Box sx={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Skills</Box>
-        {skillSets}
-      </StyledPaper>
-    </StyledPaper>
-  );
-}
+import AvatarBox from '../components/avatarBox.js';
+import SkillsBox from '../components/skillsBox.js';
 
 function LeftBox(){
   return (
@@ -180,10 +23,11 @@ function LeftBox(){
   );
 }
 
-function ResumeBox(){
+function IntroBox(){
   return(
     <StyledPaper>
       <StyledPaper sx={{ textAlign: 'justify'}}>
+        <h2 style={{ textAlign: 'center' }}>About me</h2>
         {homeIntro}
       </StyledPaper>
     </StyledPaper>
@@ -194,7 +38,7 @@ function RightBox(){
   return (
     <>
       <Box>
-        <ResumeBox/>
+        <IntroBox/>
       </Box>
       <Box>
         <PortfolioBoxes/>
@@ -226,3 +70,4 @@ export default function Home() {
         <HomeBoxes/>
     );
 }
+
