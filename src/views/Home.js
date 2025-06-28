@@ -1,14 +1,12 @@
+import 'boxicons/css/boxicons.min.css'
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import PortfolioBoxes from '../components/portfolioBoxes.js';
-import StyledPaper from '../components/styledPaper.js';
-import 'boxicons/css/boxicons.min.css'
-
-import {homeIntro} from '../data/intro.js';
-
 import AvatarBox from '../components/avatarBox.js';
 import SkillsBox from '../components/skillsBox.js';
+import IntroBox from '../components/introBox.js';
 
 function LeftBox(){
   return (
@@ -21,17 +19,6 @@ function LeftBox(){
       </Box>
     </>
   );
-}
-
-function IntroBox(){
-  return(
-    <StyledPaper>
-      <StyledPaper sx={{ textAlign: 'justify'}}>
-        <h2 style={{ textAlign: 'center' }}>About me</h2>
-        {homeIntro}
-      </StyledPaper>
-    </StyledPaper>
-  )
 }
 
 function RightBox(){

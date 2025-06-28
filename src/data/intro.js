@@ -31,6 +31,6 @@ export const skillSets = [
     },
     {
         "category": "Economics & Statistics",
-        "skills": "Statistical Analysis|Financial Analysis|Logistics & Supply Chain Management"
+        "skills": "Statistical Analysis|Financial Analysis|Logistics & Supply Chain"
     }
 ];

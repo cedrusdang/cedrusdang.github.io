@@ -20,8 +20,7 @@ export default function PortfolioBoxes() {
         
         <Swiper
           autoplay={{ 
-            delay: 3000,
-            disableOnInteraction: false
+            delay: 5000,
           }}
           loop={true}
           spaceBetween={10}

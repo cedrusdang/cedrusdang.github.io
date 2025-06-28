@@ -1,0 +1,118 @@
+import { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
+
+const mottos = [
+  `"The only thing we have to fear is fear itself."\nFranklin D. Roosevelt`,
+  `"Success is not final, failure is not fatal: It is the courage to continue that counts."\nWinston Churchill`,
+  `"Stay hungry, stay foolish."\nSteve Jobs`,
+  `"Our intelligence is what makes us human, and AI is an extension of that quality."\nYann LeCun`,
+  `"I propose to consider the question, 'Can machines think?'" \nAlan Turing`,
+  `"The value of an idea lies in the using of it."\nThomas Edison`,
+  `"Science knows no country, because knowledge belongs to humanity, and is the torch which illuminates the world."\nLouis Pasteur`
+];
+
+function TypingEffect({ text, speed, onPhaseChange }) {
+  const [displayed, setDisplayed] = useState('');
+  const [phase, setPhase] = useState('start'); // 'start','typing','end','delete'
+  const [index, setIndex] = useState(0);
+
+  // Reset state when text changes
+  useEffect(() => {
+    setPhase('start');
+    setIndex(0);
+    setDisplayed('');
+  }, [text]);
+
+  // Initial blinking cursor phase
+  useEffect(() => {
+    if (phase !== 'start') return;
+    let visible = true;
+    const timer = setInterval(() => {
+      setDisplayed(visible ? "|" : "");
+      visible = !visible;
+    }, speed * 8);
+    const timeout = setTimeout(() => {
+      clearInterval(timer);
+      setPhase('typing');
+    }, speed * 8 * 6);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(timeout);
+    };
+  }, [phase, speed]);
+
+  // Typing effect with moving cursor
+  useEffect(() => {
+    if (phase !== 'typing') return;
+    if (index > text.length) {
+      setPhase('end');
+      return;
+    }
+    const timer = setTimeout(() => {
+      setDisplayed(text.slice(0, index) + (index < text.length ? "|" : ""));
+      setIndex(index + 1);
+    }, speed);
+    return () => clearTimeout(timer);
+  }, [phase, index, text, speed]);
+
+  // End blinking cursor phase
+  useEffect(() => {
+    if (phase !== 'end') return;
+    let visible = true;
+    const timer = setInterval(() => {
+      setDisplayed(visible ? text + "|" : text + "\u00A0");
+      visible = !visible;
+    }, speed * 8);
+    const timeout = setTimeout(() => {
+      clearInterval(timer);
+      setPhase('delete');
+    }, speed * 8 * 12); ///
+    return () => {
+      clearInterval(timer);
+      clearTimeout(timeout);
+    };
+  }, [phase, speed, text]);
+
+  // Delete effect with blinking cursor
+  useEffect(() => {
+    if (phase !== 'delete') return;
+    if (index === 0) {
+      setPhase('changeMotto');
+      return;
+    }
+    const timer = setTimeout(() => {
+      setDisplayed(text.slice(0, index) + (index < text.length ? "|" : ""));
+      setIndex(index - 1);
+    }, speed*0.6);
+    return () => clearTimeout(timer);
+  }, [phase, index, text, speed]);
+
+  // Notify parent to change motto
+  useEffect(() => {
+    if (phase === 'changeMotto' && onPhaseChange) {
+      onPhaseChange();
+    }
+  }, [phase, onPhaseChange]);
+
+  return (
+    <Typography sx={{ minHeight: '2rem', textAlign: 'center', whiteSpace: 'pre-line' }}>
+      {displayed}
+    </Typography>
+  );
+}
+
+// Main component to rotate mottos
+export default function RotatingMottos({ speed = 60 }) {
+  const [index, setIndex] = useState(0);
+
+  // Handler to update index
+  const handlePhaseChange = () => setIndex(i => (i + 1) % mottos.length);
+
+  return (
+    <TypingEffect
+      text={mottos[index]}
+      speed={speed}
+      onPhaseChange={handlePhaseChange}
+    />
+  );
+}

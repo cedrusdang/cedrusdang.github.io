@@ -64,7 +64,7 @@ export default function ReviewCard({title, subheader, image, description, techSt
           {description}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing sx={{ padding: '1vh 4vw 1vh 4vw' }}>
+      <CardActions disableSpacing sx={{ padding: '1rem 1rem 1rem 1rem' }}>
         <IconButton
           aria-label="github"
           component="a"
