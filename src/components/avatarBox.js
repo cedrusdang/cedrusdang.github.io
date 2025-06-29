@@ -146,11 +146,11 @@ export default function AvatarBox(){
             flexDirection: 'column',
             margin:'0vh 0 0 0'}}>
             <Box sx={{margin:'1rem 0 0 0'}}>
-              <ViewResumePDF url='/Resume.pdf' />
+              <ViewResumePDF url={`${process.env.PUBLIC_URL}/resume.pdf`} />
             </Box>
             <Box sx={{margin:'1rem 0 0 0'}}>
-              <SocialIconRework url={GitHubURL} type="github" />
-              <SocialIconRework url={LinkedInURL} type="linkedin" />
+              <SocialIconRework url={GitHubURL} type="github" newTab={true}/>
+              <SocialIconRework url={LinkedInURL} type="linkedin" newTab={true}/>
             </Box>
           </Box>
       </StyledPaper>

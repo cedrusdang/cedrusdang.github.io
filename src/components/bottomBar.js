@@ -2,6 +2,7 @@ import { useTheme } from "@emotion/react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { copyright } from "../data/copyRight.js";
 
 export default function BottomBar() {
@@ -40,6 +41,17 @@ export default function BottomBar() {
                 >
                     To Top of Page&nbsp;
                     <span style={{ fontSize: '1.1em' }}>↑</span>
+                </Link>
+                {' | '}
+                <Link
+                    href="https://github.com/cedrusdang/portfolio_cedrus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    underline="hover"
+                    sx={{ color: steelBlue, display: "inline-flex", alignItems: "center", m: 0 }}
+                >
+                    <GitHubIcon fontSize="small" sx={{ mr: 0.5 }} />
+                    This website's GitHub repository
                 </Link>
             </Typography>
         </Box>
