@@ -42,18 +42,27 @@ export default function BottomBar() {
                     To Top of Page&nbsp;
                     <span style={{ fontSize: '1.1em' }}>↑</span>
                 </Link>
+                
                 {' | '}
+
                 <Link
                     href="https://github.com/cedrusdang/portfolio_cedrus"
                     target="_blank"
                     rel="noopener noreferrer"
                     underline="hover"
-                    sx={{ color: steelBlue, display: "inline-flex", alignItems: "center", m: 0 }}
+                    sx={{
+                        color: steelBlue,
+                        cursor: "pointer",
+                        display: "inline-flex",
+                        alignItems: "center",
+                    }}
                 >
-                    <GitHubIcon fontSize="small" sx={{ mr: 0.5 }} />
                     This website's GitHub repository
+                    <GitHubIcon fontSize="small" sx={{ ml: 0.5, verticalAlign: "middle" }} />
                 </Link>
+
             </Typography>
         </Box>
     );
 }
+
