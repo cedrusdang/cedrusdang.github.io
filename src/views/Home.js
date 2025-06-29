@@ -8,6 +8,7 @@ import AvatarBox from '../components/avatarBox.js';
 import SkillsBox from '../components/skillsBox.js';
 import IntroBox from '../components/introBox.js';
 import MottoBox from '../components/mottoBox.js';
+import MyEmail from '../components/myEmail.js';
 
 function LeftBox(){
   return (
@@ -18,6 +19,7 @@ function LeftBox(){
       <Box sx={{marginTop: '0.5rem'}}>
         <SkillsBox/>
       </Box>
+      <MyEmail/>
     </>
   );
 }

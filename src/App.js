@@ -1,13 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import GalaxyBackground from './components/backGround.js';
-import TopAppBar from './components/topBar.js';
-import Box from '@mui/material/Box';
 import { useState, useMemo } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { GlobalStyles, useTheme } from '@mui/material';
 
+import GalaxyBackground from './components/backGround.js';
+import TopAppBar from './components/topBar.js';
 import About from './views/home.js';
+import BottomBar from './components/bottomBar.js';
 
 function AppGlobalStyles() {
   const theme = useTheme();
@@ -28,14 +29,20 @@ function AppGlobalStyles() {
   );
 }
 
-// Routes are for future expansion, currently only About page
-// Presentation of applications will be added in the future
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const theme = useMemo(
     () =>
       createTheme({
-        palette: {mode: darkMode ? "dark" : "light"},
+        palette: {
+          mode: darkMode ? "dark" : "light",
+          ...(darkMode && {
+            background: {
+              default: "#23242a",
+              paper: "#1A2027"
+            }
+          })
+        }
       }),
     [darkMode]
   );
@@ -47,21 +54,19 @@ function App() {
         <AppGlobalStyles />
         <GalaxyBackground/>
         <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Box sx={{ 
-          p: { xs: 1.5, md: 2}, 
-          maxWidth: 'lg', 
+        <Box sx={{
+          p: { xs: 1.5, md: 2},
+          maxWidth: 'lg',
           mx: 'auto'
-          }}
-        >
+        }}>
           <Routes>
             <Route path="/" element={<About />} />
           </Routes>
         </Box>
+        <BottomBar />
       </Router>
     </ThemeProvider>
   );
 }
 
 export default App;
-
-

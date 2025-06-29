@@ -37,7 +37,6 @@ export default function PersonalIcons() {
                 transition: 'transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1)',
                 m: '0.5rem',
                 transform: 'perspective(600px) rotateX(6deg) scale(1)',
-                cursor: 'pointer',
                 border: `1.5px solid ${theme.palette.divider}`,
             }}
         >

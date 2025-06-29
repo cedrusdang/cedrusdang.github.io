@@ -32,7 +32,7 @@ export default function PortfolioBoxes() {
           // Allow passing additional props if needed
           {...(typeof window !== "undefined" && window.portfolioSwiperMainProps)}
         >
-          <Box>
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
             {projects.map((proj, idx) => (
               <SwiperSlide key={idx} >
                 <Box elevation={5} /* Add elevation for 3D effect */>

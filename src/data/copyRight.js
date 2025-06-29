@@ -1,0 +1,1 @@
+export const copyright = "© 2025 Cedrus Dang";

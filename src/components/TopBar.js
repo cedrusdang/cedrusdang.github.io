@@ -109,10 +109,10 @@ export default function TopAppBar({darkMode, setDarkMode}) {
       position="static"
       elevation={0}
       sx={theme => ({
-        bgcolor: theme.palette.mode === 'dark' ? '#23242a' : '#fafbfc',
+        bgcolor: theme.palette.background.default,
         borderBottom: '1px solid',
-        borderColor: theme.palette.mode === 'dark' ? '#323232' : '#e0e0e0',
-        color: theme.palette.mode === 'dark' ? '#f3f6fa' : '#222',
+        borderColor: theme.palette.divider,
+        color: theme.palette.text.primary,
         width: '100vw',
       })}
     >
@@ -125,14 +125,13 @@ export default function TopAppBar({darkMode, setDarkMode}) {
           px: '5vw'
         }}
       >
-        
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, minWidth: 0 }}>
           <TopLogoIcon />
           <TopNameOwner isSmall={isSmall} />
           {!isMedium && <TopPortfolioIntro sx={{ alignItems: 'center' }} />}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <DarkLightBtn darkMode={darkMode} setDarkMode={setDarkMode} />
+          <DarkLightBtn darkMode={darkMode} setDarkMode={setDarkMode} />
         </Box>
       </Toolbar>
     </AppBar>

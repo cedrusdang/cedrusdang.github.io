@@ -22,7 +22,6 @@ function SkillsSwiper() {
 
   return (
     <>
-    <StyledPaper>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -102,15 +101,17 @@ function SkillsSwiper() {
           opacity: 0 !important;
         }
       `}</style>
-    </StyledPaper>
     </>
   );
 }
 
 function SkillsCards() {
   return (
-    <StyledPaper>
-      <SkillsSwiper />
+    <StyledPaper>  
+        <StyledPaper>
+          <h3 style={{ margin: "0 0 0.25rem 0" }}>My Skills</h3>
+          <SkillsSwiper />
+      </StyledPaper>
     </StyledPaper>
   );
 }

@@ -87,7 +87,7 @@ function TypingEffect({ text, speed, onPhaseChange }) {
   }, [phase, onPhaseChange]);
 
   return (
-    <Typography sx={{textAlign: 'center', whiteSpace: 'pre-line' }}>
+    <Typography variant="h6" sx={{textAlign: 'center', whiteSpace: 'pre-line' }}>
       {displayed}
     </Typography>
   );
@@ -104,7 +104,7 @@ export default function RotatingMottos({ speed = 60 }) {
     <Box sx={{padding: '0 0.5rem 0.5rem 0.5rem'}}>
       <Box
         sx={{
-          height: { xs: '6rem', sm: '3rem'},
+          height: { xs: '8rem', sm: '6rem'},
           display: 'flex',
           width: '100%',
           justifyContent: 'center',

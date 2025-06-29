@@ -8,7 +8,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import Box from '@mui/material/Box';
 
 import StyledPaper from './styledPaper.js';
-import {ownerName, GitHubURL, LinkedInURL} from '../data/info.js';
+import {ownerName, GitHubURL, LinkedInURL, email} from '../data/info.js';
 import { LeftBoxIntro } from '../data/intro.js';
 
 const AvatarPic = "/images/avatar.jpg"
@@ -131,8 +131,7 @@ export default function AvatarBox(){
                 }} 
               />
           </Box>   
-          <h2>{ownerName}</h2>
-
+          <h2>{ownerName}</h2>                
           <Box sx={{ textAlign: 'center'}}>
             <Typography>
               {LeftBoxIntro}
