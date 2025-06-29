@@ -42,7 +42,7 @@ export default function ReviewCard({title, subheader, image, description, techSt
         alignItems: 'center',
         background: '#fff', 
         height: '40vh',    
-        overflow: 'hidden'
+        overflow: 'hidden',        
       }}>
       <CardMedia
         component="img"

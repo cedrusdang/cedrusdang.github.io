@@ -6,6 +6,7 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import PublicIcon from '@mui/icons-material/Public';
 import ComputerIcon from '@mui/icons-material/Computer';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import PersonalIcons from './personalIcons.js';
 
 const gradients = {
   dark: {
@@ -83,7 +84,7 @@ const storyItems = [
   {
     icon: <TerminalIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
     iconPosition: 'right',
-    text: 'My skills: Data Science, AI, Business Analytics, Software Development.',
+    text: 'My skills: Data Science, AI, Business Analytics, and Software Development.',
   },
   {
     icon: <FavoriteBorderIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
@@ -94,18 +95,23 @@ const storyItems = [
 
 export default function StoryBox() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      {storyItems.map(({ icon, iconPosition, text }, idx) => (
-        <MetallicPaper key={idx} icon={icon} iconPosition={iconPosition}>
-          {text}
-        </MetallicPaper>
-      ))}
-    </Box>
+    <>
+      <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <PersonalIcons/>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        {storyItems.map(({ icon, iconPosition, text }, idx) => (
+          <MetallicPaper key={idx} icon={icon} iconPosition={iconPosition}>
+            {text}
+          </MetallicPaper>
+        ))}
+      </Box>
+    </>
   );
 }
