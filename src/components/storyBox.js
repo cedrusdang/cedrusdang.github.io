@@ -1,71 +1,96 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Paper } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 import PsychologyIcon from '@mui/icons-material/Psychology';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import PublicIcon from '@mui/icons-material/Public';
-import Paper from '@mui/material/Paper';
-import { useTheme} from '@mui/material/styles'; 
+import ComputerIcon from '@mui/icons-material/Computer';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-function MetallicPaper({ icon, iconPosition = 'left', children, ...props }) {
+const gradients = {
+  dark: {
+    left:  'linear-gradient(90deg, rgba(36,42,54,0.9) 0%, rgba(82,89,102,0.7) 40%, rgba(153,164,185,0.25) 100%)',
+    right: 'linear-gradient(90deg, rgba(153,164,185,0.25) 0%, rgba(82,89,102,0.7) 60%, rgba(36,42,54,0.9) 100%)',
+  },
+  light: {
+    left:  'linear-gradient(90deg, rgba(245,247,250,0.93) 0%, rgba(206,212,219,0.78) 40%, rgba(180,190,200,0.34) 100%)',
+    right: 'linear-gradient(90deg, rgba(180,190,200,0.34) 0%, rgba(206,212,219,0.78) 60%, rgba(245,247,250,0.93) 100%)',
+  },
+};
+
+function MetallicPaper({ icon, iconPosition = 'left', children, sx = {}, ...props }) {
   const theme = useTheme();
-
-  // Set gradient stops based on iconPosition
-  let gradient;
-  if (iconPosition === 'left' && theme.palette.mode === 'dark') {
-    gradient = 'linear-gradient(90deg, #6c707a 0%, #a0a4ab 40%, #6c707a 100%)';
-  } else if (iconPosition === 'right' && theme.palette.mode === 'dark') {
-    gradient = 'linear-gradient(90deg, #a0a4ab 0%, #6c707a 60%, #a0a4ab 100%)';
-  } else if (iconPosition === 'right' && theme.palette.mode === 'light') {
-    gradient = 'linear-gradient(90deg, #e6e8ec 0%, #bfc1c6 60%, #e6e8ec 100%)';
-  } else {
-    gradient = 'linear-gradient(90deg, #bfc1c6 0%, #e6e8ec 40%, #bfc1c6 100%)';
-  }
-
-  // Arrange content based on iconPosition
-  let content;
-  if (iconPosition === 'left') {
-    content = (
-      <Box sx={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'flex-start', width: '100%' }}>
-        {icon}
-        <Typography
-          variant="body1"
-          sx={{ marginLeft: '0.5rem', textAlign: 'left', flex: 1 }}
-        >
-          {children}
-        </Typography>
-      </Box>
-    );
-  } else {
-    content = (
-      <Box sx={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'flex-end', width: '100%' }}>
-        <Typography
-          variant="body1"
-          sx={{ marginRight: '0.5rem', textAlign: 'right', flex: 1 }}
-        >
-          {children}
-        </Typography>
-        {icon}
-      </Box>
-    );
-  }
+  const mode = theme.palette.mode;
+  const gradient = gradients[mode][iconPosition];
 
   return (
     <Paper
       elevation={5}
       sx={{
-        padding: '0.5rem',
+        p: '0.5rem',
         display: 'flex',
         alignItems: 'center',
-        margin: '1rem 0 1rem 0',
+        my: '1rem',
         background: gradient,
         width: { xs: '80vw', sm: '35.5rem', md: '34.5rem', lg: '36rem' },
-        ...props.sx,
+        ...sx,
       }}
       {...props}
     >
-      {content}
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flex: 1,
+          justifyContent: iconPosition === 'left' ? 'flex-start' : 'flex-end',
+          width: '100%',
+        }}
+      >
+        {iconPosition === 'left' && icon}
+        <Typography
+          variant="body1"
+          sx={{
+            mx: iconPosition === 'left' ? '0.5rem' : 0,
+            mr: iconPosition === 'right' ? '0.5rem' : 0,
+            textAlign: iconPosition,
+            flex: 1,
+          }}
+        >
+          {children}
+        </Typography>
+        {iconPosition === 'right' && icon}
+      </Box>
     </Paper>
   );
 }
+
+const storyItems = [
+  {
+    icon: <PsychologyIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
+    iconPosition: 'left',
+    text: 'I love Science, Technology, and Complex Problem Solving.',
+  },
+  {
+    icon: <ComputerIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
+    iconPosition: 'right',
+    text: 'Learning, Analyzing, and Coding are my Daily Passions.',
+  },
+  {
+    icon: <PublicIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
+    iconPosition: 'left',
+    text: 'Technology, to me, could make the World Better.',
+  },
+  {
+    icon: <TerminalIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
+    iconPosition: 'right',
+    text: 'My skills: Data Science, AI, Business Analytics, Software Development.',
+  },
+  {
+    icon: <FavoriteBorderIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />,
+    iconPosition: 'left',
+    text: 'At Heart, I am a Data Scientist.',
+  }
+];
 
 export default function StoryBox() {
   return (
@@ -76,24 +101,11 @@ export default function StoryBox() {
         alignItems: 'center',
       }}
     >
-      <MetallicPaper 
-        icon={<PsychologyIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />}
-        iconPosition="left"
-      >
-        My love are in science, technology, and solving complex problems.
-      </MetallicPaper>
-      <MetallicPaper
-        icon={<TerminalIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />}
-        iconPosition="right"
-      >
-        Learning, analysing and coding are my passions.
-      </MetallicPaper>
-      <MetallicPaper
-        icon={<PublicIcon sx={{ transform: 'scale(2)', m: '0.5rem 1rem' }} />}
-        iconPosition="left"
-      >
-        I believe technology is meant to create a better world.
-      </MetallicPaper>
+      {storyItems.map(({ icon, iconPosition, text }, idx) => (
+        <MetallicPaper key={idx} icon={icon} iconPosition={iconPosition}>
+          {text}
+        </MetallicPaper>
+      ))}
     </Box>
   );
 }
