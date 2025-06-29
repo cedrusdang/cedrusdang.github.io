@@ -1,29 +1,21 @@
 import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
-
-const mottos = [
-  `"The only thing we have to fear is fear itself."\nFranklin D. Roosevelt`,
-  `"Success is not final, failure is not fatal: It is the courage to continue that counts."\nWinston Churchill`,
-  `"Stay hungry, stay foolish."\nSteve Jobs`,
-  `"Our intelligence is what makes us human, and AI is an extension of that quality."\nYann LeCun`,
-  `"I propose to consider the question, 'Can machines think?'" \nAlan Turing`,
-  `"The value of an idea lies in the using of it."\nThomas Edison`,
-  `"Science knows no country, because knowledge belongs to humanity, and is the torch which illuminates the world."\nLouis Pasteur`
-];
+import { mottos } from '../data/intro.js'; 
+import Box from '@mui/material/Box';
 
 function TypingEffect({ text, speed, onPhaseChange }) {
   const [displayed, setDisplayed] = useState('');
-  const [phase, setPhase] = useState('start'); // 'start','typing','end','delete'
+  const [phase, setPhase] = useState('firstStart'); // 'start','typing','end','delete'
   const [index, setIndex] = useState(0);
 
   // Reset state when text changes
   useEffect(() => {
-    setPhase('start');
+    setPhase('typing');
     setIndex(0);
     setDisplayed('');
   }, [text]);
 
-  // Initial blinking cursor phase
+  // Start blinking cursor phase
   useEffect(() => {
     if (phase !== 'start') return;
     let visible = true;
@@ -95,7 +87,7 @@ function TypingEffect({ text, speed, onPhaseChange }) {
   }, [phase, onPhaseChange]);
 
   return (
-    <Typography sx={{ minHeight: '2rem', textAlign: 'center', whiteSpace: 'pre-line' }}>
+    <Typography sx={{textAlign: 'center', whiteSpace: 'pre-line' }}>
       {displayed}
     </Typography>
   );
@@ -109,10 +101,21 @@ export default function RotatingMottos({ speed = 60 }) {
   const handlePhaseChange = () => setIndex(i => (i + 1) % mottos.length);
 
   return (
-    <TypingEffect
-      text={mottos[index]}
-      speed={speed}
-      onPhaseChange={handlePhaseChange}
-    />
+    <Box sx={{padding: '0 0.5rem 0.5rem 0.5rem'}}>
+      <Box
+        sx={{
+          height: { xs: '6rem', sm: '3rem'},
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'center',
+        }}
+      >
+        <TypingEffect
+          text={mottos[index]}
+          speed={speed}
+          onPhaseChange={handlePhaseChange}
+        />
+      </Box>
+    </Box>
   );
 }

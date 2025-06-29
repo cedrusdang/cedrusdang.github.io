@@ -7,6 +7,7 @@ import PortfolioBoxes from '../components/portfolioBoxes.js';
 import AvatarBox from '../components/avatarBox.js';
 import SkillsBox from '../components/skillsBox.js';
 import IntroBox from '../components/introBox.js';
+import MottoBox from '../components/mottoBox.js';
 
 function LeftBox(){
   return (
@@ -24,6 +25,7 @@ function LeftBox(){
 function RightBox(){
   return (
     <>
+      <MottoBox/>
       <Box>
         <IntroBox/>
       </Box>

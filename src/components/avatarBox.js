@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 
 import StyledPaper from './styledPaper.js';
 import {ownerName, GitHubURL, LinkedInURL} from '../data/info.js';
-import { userIntro } from '../data/intro.js';
+import { LeftBoxIntro } from '../data/intro.js';
 
 const AvatarPic = "/images/avatar.jpg"
 
@@ -117,20 +117,25 @@ export default function AvatarBox(){
       <StyledPaper> 
         <StyledPaper>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Avatar src={AvatarPic} alt="Avatar" sx={{ 
+              <Avatar 
+                src={AvatarPic} 
+                alt="Avatar" 
+                sx={{ 
                   margin: '0.5rem 0.5rem 0 0.5rem', 
-                  width: '20vh', 
-                  height: '20vh', 
+                  width: { xs: '50vw', sm: '50vw', md: '30vw', lg: '30vw', xl: '30vw' },
+                  height: 'auto',
+                  maxWidth: '180px',
+                  maxHeight: '180px',
                   border: '0.2rem solid rgba(17, 62, 241, 0.47)', 
                   boxShadow: '0 0 0 2px rgba(9, 17, 246, 0.76)', 
-                  }} 
+                }} 
               />
           </Box>   
           <h2>{ownerName}</h2>
 
           <Box sx={{ textAlign: 'center'}}>
             <Typography>
-              {userIntro}
+              {LeftBoxIntro}
             </Typography>
             
           </Box>

@@ -8,7 +8,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { GlobalStyles, useTheme } from '@mui/material';
 
 import About from './views/home.js';
-import Projects from './views/projects.js';
 
 function AppGlobalStyles() {
   const theme = useTheme();
@@ -29,8 +28,10 @@ function AppGlobalStyles() {
   );
 }
 
+// Routes are for future expansion, currently only About page
+// Presentation of applications will be added in the future
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const theme = useMemo(
     () =>
       createTheme({
@@ -54,7 +55,6 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
           </Routes>
         </Box>
       </Router>

@@ -1,6 +1,7 @@
 import StyledPaper from '../components/styledPaper.js';
 import { Box, Typography } from '@mui/material';
-import RotatingMottos from './typeMotto.js';
+
+import StoryBox from './storyBox.js';
 
 export default function IntroBox(){
   return (
@@ -11,14 +12,13 @@ export default function IntroBox(){
           style={{ 
             textAlign: 'center', 
             fontWeight: 'bold', 
-            margin: '0.5rem 0 0.25rem 0'
+            margin: '0'
             }}
         >
           About me
-          
         </Typography>
-        <Box sx={{ height: '3rem' }}>
-            <RotatingMottos />
+        <Box sx={{justifySelf: 'center', boxSizing: 'border-box'}}>
+          <StoryBox/>
         </Box>
       </StyledPaper>
     </StyledPaper>

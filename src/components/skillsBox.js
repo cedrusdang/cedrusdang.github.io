@@ -110,9 +110,6 @@ function SkillsSwiper() {
 function SkillsCards() {
   return (
     <StyledPaper>
-      <Typography sx={{ marginBottom: '0', fontWeight: 600 }}>
-        Skill Sets
-      </Typography>
       <SkillsSwiper />
     </StyledPaper>
   );

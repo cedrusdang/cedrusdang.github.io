@@ -22,6 +22,7 @@ export default function PortfolioBoxes() {
           autoplay={{ 
             delay: 5000,
           }}
+          
           loop={true}
           spaceBetween={10}
           navigation={true}
@@ -31,18 +32,20 @@ export default function PortfolioBoxes() {
           // Allow passing additional props if needed
           {...(typeof window !== "undefined" && window.portfolioSwiperMainProps)}
         >
-          <Box >
+          <Box>
             {projects.map((proj, idx) => (
               <SwiperSlide key={idx} >
-                <ReviewCard 
-                  title={proj.title}
-                  subheader={proj.subheader}
-                  image={proj.image}
-                  description={proj.description}
-                  techStack={proj.techStack}
-                  expandDescription={proj.expandDescription}
-                  githubURL={proj.githubURL}
-                />
+                <Box elevation={5} /* Add elevation for 3D effect */>
+                  <ReviewCard 
+                    title={proj.title}
+                    subheader={proj.subheader}
+                    image={proj.image}
+                    description={proj.description}
+                    techStack={proj.techStack}
+                    expandDescription={proj.expandDescription}
+                    githubURL={proj.githubURL}
+                  />
+                </Box>
               </SwiperSlide>
             ))}
           </Box>
