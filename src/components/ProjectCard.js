@@ -30,8 +30,6 @@ export default function ReviewCard({title, subheader, image, description, techSt
     setExpanded(!expanded);
   };
 
-  const theme = styled.useTheme ? styled.useTheme() : undefined;
-
   return (
     <StyledPaper>
       <Card

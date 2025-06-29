@@ -3,9 +3,9 @@ import { useTheme } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 
 const images = [
-    { src: '/images/DSImg.png', alt: 'Data Scientist' },
-    { src: '/images/DevImg.png', alt: 'Developer' },
-    { src: '/images/BAImg.png', alt: 'Business Analyst' },
+    { src: `${process.env.PUBLIC_URL}/images/DSImg.png`, alt: 'Data Scientist' },
+    { src: `${process.env.PUBLIC_URL}/images/DevImg.png`, alt: 'Developer' },
+    { src: `${process.env.PUBLIC_URL}/images/BAImg.png`, alt: 'Business Analyst' },
 ];
 
 export default function PersonalIcons() {

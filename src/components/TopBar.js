@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import {ownerName} from '../data/info.js';
 import {topbarIntro} from '../data/info.js';
 
-const logoPic = "/images/DSlogo.png"
+const logoPic = `${process.env.PUBLIC_URL}/images/DSlogo.png`
 
 function DarkLightBtn({ darkMode, setDarkMode }) {
   return (

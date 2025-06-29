@@ -11,7 +11,7 @@ import StyledPaper from './styledPaper.js';
 import {ownerName, GitHubURL, LinkedInURL} from '../data/info.js';
 import { LeftBoxIntro } from '../data/intro.js';
 
-const AvatarPic = "/images/avatar.jpg"
+const AvatarPic = `${process.env.PUBLIC_URL}/images/avatar.jpg`
 
 function ViewResumePDF({ url, sx }) {
   return (

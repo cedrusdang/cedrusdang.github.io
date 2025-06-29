@@ -50,7 +50,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <AppGlobalStyles />
         <GalaxyBackground/>
         <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
