@@ -2,7 +2,7 @@
 
 Personal portfolio website showcasing skills, projects, and background in Data Science, AI, and Engineering.
 
-**Live Demo:** [https://cedrusdang.github.io/portfolio_cedrus](https://cedrusdang.github.io)
+**Live Demo:** [https://cedrusdang.github.io](https://cedrusdang.github.io)
 
 ## About
 
