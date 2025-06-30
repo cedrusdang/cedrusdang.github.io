@@ -27,28 +27,22 @@ Personal portfolio website showcasing skills, projects, and background in Data S
 
 ## Getting Started
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/cedrusdang/portfolio_cedrus.git
-   cd portfolio_cedrus
-````
-
-2. **Install dependencies:**
+1. **Install dependencies:**
 
    ```bash
    npm install
    ```
-3. **Run local dev server:**
+2. **Run local dev server:**
 
    ```bash
    npm start
    ```
-4. **Build for production:**
+3. **Build for production:**
 
    ```bash
    npm run build
    ```
-5. **Deploy to GitHub Pages:**
+4. **Deploy to GitHub Pages:**
 
    ```bash
    npm run deploy
