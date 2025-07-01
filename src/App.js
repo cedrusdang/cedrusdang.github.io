@@ -53,17 +53,27 @@ function App() {
       <Router basename={process.env.PUBLIC_URL}>
         <AppGlobalStyles />
         <GalaxyBackground/>
-        <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
-        <Box sx={{
-          p: { xs: 1.5, md: 2},
-          maxWidth: 'lg',
-          mx: 'auto'
-        }}>
-          <Routes>
-            <Route path="/" element={<About />} />
-          </Routes>
-        </Box>
-        <BottomBar />
+
+        <header>
+          <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
+        </header>
+
+        <body>
+          <Box sx={{
+            p: { xs: 1.5, md: 2},
+            maxWidth: 'lg',
+            mx: 'auto'
+          }}>
+            <Routes>
+              <Route path="/" element={<About />} />
+            </Routes>
+          </Box>
+        </body>
+
+        <footer>
+          <BottomBar />
+        </footer>
+
       </Router>
     </ThemeProvider>
   );

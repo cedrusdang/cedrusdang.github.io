@@ -1,5 +1,5 @@
 import {useState} from "react";
-import StyledPaper from "./styledPaper";
+import StyledPaper from "./styledPaper.js";
 import { email } from "../data/info.js";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';

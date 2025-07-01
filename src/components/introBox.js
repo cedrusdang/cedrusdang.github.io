@@ -1,4 +1,4 @@
-import StyledPaper from '../components/styledPaper.js';
+import StyledPaper from './styledPaper.js';
 import { Box, Typography } from '@mui/material';
 
 import StoryBox from './storyBox.js';
