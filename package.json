@@ -1,5 +1,5 @@
 {
-  "name": "portfolio_cedrus",
+  "name": "cedrusdangwebsite",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -47,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://cedrusdang.github.io"
+  "homepage": "https://www.cedrusdang.com"
 }
