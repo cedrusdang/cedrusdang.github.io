@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -30,6 +30,35 @@ function AppGlobalStyles() {
 }
 
 function App() {
+  // Loading screen control
+  useEffect(() => {
+    const needToLoadFirstImg = [
+      '/images/avatar.png',
+      '/images/BAImg.png',
+      '/images/DevImg.png',
+      '/images/DSImg.png',
+      '/images/DSlogo.png',
+    ];
+    let loaded = 0;
+    needToLoadFirstImg.forEach((imgUrl) => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        loaded++;
+        if (loaded === needToLoadFirstImg.length) {
+          // If all images loaded, hide loading screen
+          const loading = document.getElementById('loading');
+          if (loading) loading.style.display = 'none';
+          const loadingVideo = document.getElementById('loadingVideo');
+          if (loadingVideo) loadingVideo.style.display = 'none';
+          console.log("Loading resources complete!");
+        }
+      };
+      img.src = imgUrl;
+      console.log(`Loading image: ${imgUrl}...`);
+    });
+  }, []);
+
+  // Dark mode state and theme creation
   const [darkMode, setDarkMode] = useState(true);
   const theme = useMemo(
     () =>
@@ -58,22 +87,19 @@ function App() {
           <TopAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
         </header>
 
-        <body>
-          <Box sx={{
-            p: { xs: 1.5, md: 2},
-            maxWidth: 'lg',
-            mx: 'auto'
-          }}>
-            <Routes>
-              <Route path="/" element={<About />} />
-            </Routes>
-          </Box>
-        </body>
+        <Box component="main" sx={{
+          p: { xs: 1.5, md: 2},
+          maxWidth: 'lg',
+          mx: 'auto'
+        }}>
+          <Routes>
+            <Route path="/" element={<About />} />
+          </Routes>
+        </Box>
 
         <footer>
           <BottomBar />
         </footer>
-
       </Router>
     </ThemeProvider>
   );

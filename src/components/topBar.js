@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import {ownerName} from '../data/info.js';
 import {topbarIntro} from '../data/info.js';
 
-const logoPic = `${process.env.PUBLIC_URL}/images/DSlogo.png`
+const logoPic = `${process.env.PUBLIC_URL}/images/logo.png`
 
 function DarkLightBtn({ darkMode, setDarkMode }) {
   return (
@@ -113,13 +113,13 @@ export default function TopAppBar({darkMode, setDarkMode}) {
         borderBottom: '1px solid',
         borderColor: theme.palette.divider,
         color: theme.palette.text.primary,
-        width: '100vw',
+        width: '100%',
       })}
     >
       <Toolbar
         disableGutters
         sx={{
-          width: '100vw',
+          width: '100%',
           height: '3.5rem',
           minHeight: '3.5rem !important',
           px: '5vw'

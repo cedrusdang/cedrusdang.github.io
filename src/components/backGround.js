@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 function randomStars(n) {
   return Array.from({ length: n }).map((_, i) => ({
     top: Math.random() * 100 + "vh",
-    left: Math.random() * 100 + "vw",
+    left: Math.random() * 95 + "vw", // Giảm từ 100 xuống 95 để tránh overflow
     size: 0.5 + Math.random() * 1.8 + "px",
     opacity: 0.3 + Math.random() * 0.7,
     key: i
@@ -25,10 +25,8 @@ export default function GalaxyBackground() {
     window.addEventListener("resize", updateStars);
     return () => window.removeEventListener("resize", updateStars);
   }, [theme.palette.mode]);
-  
-
   return (
-    <div style={{ position: "fixed", inset: 0, width: "100vw", height: "100vh", zIndex: -1 }}>
+    <div style={{ position: "fixed", inset: 0, width: "100%", height: "100vh", zIndex: -1 }}>
       {stars.map(star => (
         <div key={star.key} style={{
           position: "absolute",
