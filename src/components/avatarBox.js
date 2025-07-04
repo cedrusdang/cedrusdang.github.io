@@ -35,7 +35,7 @@ function SocialIconRework({ url, type, newTab = false }) {
     github: {
       icon: GitHubIcon,
       color: '#222'
-    },        
+    },
     linkedin: {
       icon: LinkedInIcon,
       color: '#0A66C2'
@@ -46,7 +46,7 @@ function SocialIconRework({ url, type, newTab = false }) {
     github: {
       icon: GitHubIcon,
       color: '#f3f6fa'
-    },        
+    },
     linkedin: {
       icon: LinkedInIcon,
       color: '#59a7f5'

@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 function randomStars(n) {
   return Array.from({ length: n }).map((_, i) => ({
     top: Math.random() * 100 + "vh",
-    left: Math.random() * 95 + "vw", // Giảm từ 100 xuống 95 để tránh overflow
+    left: Math.random() * 95 + "vw",
     size: 0.5 + Math.random() * 1.8 + "px",
     opacity: 0.3 + Math.random() * 0.7,
     key: i
