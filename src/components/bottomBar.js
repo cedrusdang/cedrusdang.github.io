@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import GitHubIcon from "@mui/icons-material/GitHub";
+
 import { copyright } from "../data/copyRight.js";
 
 export default function BottomBar() {
@@ -22,6 +23,19 @@ export default function BottomBar() {
             padding: { xs: '0.25rem', sm: '1rem' },
             boxShadow: 3,
         }}>
+            <Box>
+                <Typography 
+                color="textSecondary" 
+                style={{
+                    alignContent: "center", 
+                    display: "flex", 
+                    justifyContent: "center", 
+                    alignItems: "center"
+                }}>
+                    Build with love, curiosity, and
+                    <video src="/images/react.webm" autoPlay loop muted style={{ width: '2rem' }} />
+                </Typography>
+            </Box>
             <Typography
                 variant="h8"
                 color="textSecondary"
@@ -42,9 +56,7 @@ export default function BottomBar() {
                     To Top of Page&nbsp;
                     <span style={{ fontSize: '1.1em' }}>↑</span>
                 </Link>
-                
                 {' | '}
-
                 <Link
                     href="https://github.com/cedrusdang/portfolio_cedrus"
                     target="_blank"
