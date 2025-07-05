@@ -1,23 +1,8 @@
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import { useState, useEffect } from 'react';
-
-const images = [
-    { src: `${process.env.PUBLIC_URL}/images/DSImg.png`, alt: 'Data Scientist' },
-    { src: `${process.env.PUBLIC_URL}/images/DevImg.png`, alt: 'Developer' },
-    { src: `${process.env.PUBLIC_URL}/images/BAImg.png`, alt: 'Business Analyst' },
-];
 
 export default function PersonalIcons() {
     const theme = useTheme();
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prev) => (prev + 1) % images.length);
-        }, 1500);
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <Box
@@ -41,11 +26,12 @@ export default function PersonalIcons() {
             }}
         >
             <img
-                src={images[index].src}
-                alt={images[index].alt}
+                src={'/MyIcon.webp'}
+                alt="Personal Icon"
                 style={{
                     width: '4rem',
                     height: 'auto',
+                    borderRadius: '50%',
                 }}
             />
         </Box>

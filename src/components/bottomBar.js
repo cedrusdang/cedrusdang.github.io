@@ -33,7 +33,7 @@ export default function BottomBar() {
                     alignItems: "center"
                 }}>
                     Build with love, curiosity, and
-                    <video src="/images/react.webm" autoPlay loop muted style={{ width: '2rem' }} />
+                    <video src="/react.webm" autoPlay loop muted style={{ width: '2rem' }} />
                 </Typography>
             </Box>
             <Typography
