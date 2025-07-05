@@ -24,12 +24,12 @@ export default function BottomBar() {
             boxShadow: 3,
         }}>
             <Box>
-                <Typography 
-                color="textSecondary" 
+                <Typography
+                color="textSecondary"
                 style={{
-                    alignContent: "center", 
-                    display: "flex", 
-                    justifyContent: "center", 
+                    alignContent: "center",
+                    display: "flex",
+                    justifyContent: "center",
                     alignItems: "center"
                 }}>
                     Build with love, curiosity, and

@@ -35,42 +35,76 @@ export default function MyEmail() {
     <StyledPaper sx={{ marginTop: "1rem" }}>
       <StyledPaper>
         <h3 style={{ margin: "0 0 0.25rem 0" }}>My Email</h3>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "0.5rem" }}>
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              animation: emailPop ? 'pop 0.2s cubic-bezier(.36,1.7,.57,.99)' : 'none'
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0",
             }}
           >
-            {emailCopied ? (
-              <MarkEmailReadRoundedIcon fontSize="small" color="action" style={{ transform: "scale(1.2)" }} />
-            ) : (
-              <EmailRoundedIcon fontSize="small" color="action" style={{ transform: "scale(1.2)" }} />
-            )}
-          </span>
-          <span style={{ marginLeft: "0.4rem" }}>{email}</span>
-          <button
-            onClick={handleButtonClick}
-            style={{
-              marginLeft: '0.4rem',
-              width: '1.5rem',
-              height: '1.5rem',
-              cursor: 'pointer',
-              backgroundColor: 'transparent',
-              border: 'none',
-              padding: 0,
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              animation: copied ? 'pop 0.2s cubic-bezier(.36,1.7,.57,.99)' : 'none'
-            }}
-            aria-label="Copy email"
-          >
-            <ContentCopyIcon fontSize="small" color={copied ? 'disabled' : 'action'} />
-          </button>
-        </div>
+              <span
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  animation: emailPop ? 'pop 0.2s cubic-bezier(.36,1.7,.57,.99)' : 'none'
+                }}
+              >
+                {emailCopied ? (
+                  <MarkEmailReadRoundedIcon
+                  fontSize="small"
+                  color="action"
+                  style={{ transform: "scale(1.2)" }}
+                  onClick={handleButtonClick}
+                  cursor="pointer"
+                  title="Copy email to clipboard"
+                  />
+                ) : (
+                  <EmailRoundedIcon
+                  fontSize="small"
+                  color="action"
+                  style={{ transform: "scale(1.2)" }}
+                  onClick={handleButtonClick}
+                  cursor="pointer"
+                  title="Copy email to clipboard"
+                  />
+                )}
+              </span>
+              <span style={{
+                marginLeft: "0.4rem",
+                borderColor: "main.secondary",
+                borderWidth: "1px",
+                borderStyle: "solid",
+                borderRadius: "16px",
+                padding: "0.1rem 0.5rem 0.1rem 0.5rem",
+                cursor: "pointer"
+              }}
+                onClick={handleButtonClick}
+                title="Click to copy email"
+                aria-label="Email address"
+              >
+                {email}
+              </span>
+              <button
+                onClick={handleButtonClick}
+                style={{
+                  marginLeft: '0.4rem',
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  cursor: 'pointer',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  animation: copied ? 'pop 0.2s cubic-bezier(.36,1.7,.57,.99)' : 'none'
+                }}
+                aria-label="Copy email"
+              >
+                <ContentCopyIcon fontSize="small" color={copied ? 'disabled' : 'action'} />
+              </button>
+            </div>
         <style>
           {`
             @keyframes pop {

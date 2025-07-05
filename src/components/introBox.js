@@ -7,11 +7,11 @@ export default function IntroBox(){
   return (
     <StyledPaper>
       <StyledPaper sx={{ textAlign: 'justify' }}>
-        <Typography 
-          variant="h6" 
-          style={{ 
-            textAlign: 'center', 
-            fontWeight: 'bold', 
+        <Typography
+          variant="h6"
+          style={{
+            textAlign: 'center',
+            fontWeight: 'bold',
             margin: '0'
             }}
         >
