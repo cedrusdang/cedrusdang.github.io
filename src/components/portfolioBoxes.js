@@ -17,12 +17,12 @@ export default function PortfolioBoxes() {
   // Accept props for configuration, fallback to sensible defaults
   return (
     <>
-        
+
         <Swiper
           autoplay={{ 
             delay: 5000,
           }}
-          
+
           loop={true}
           spaceBetween={10}
           navigation={true}
@@ -35,8 +35,8 @@ export default function PortfolioBoxes() {
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
             {projects.map((proj, idx) => (
               <SwiperSlide key={idx} >
-                <Box elevation={5} /* Add elevation for 3D effect */>
-                  <ReviewCard 
+                <Box elevation={5}  /* Add elevation for 3D effect */>
+                  <ReviewCard
                     title={proj.title}
                     subheader={proj.subheader}
                     image={proj.image}
@@ -44,6 +44,7 @@ export default function PortfolioBoxes() {
                     techStack={proj.techStack}
                     expandDescription={proj.expandDescription}
                     githubURL={proj.githubURL}
+                    loading='lazy'
                   />
                 </Box>
               </SwiperSlide>
@@ -53,7 +54,7 @@ export default function PortfolioBoxes() {
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView={projects.length < 6 ? projects.length : 6} // Flexible slides per view
+        slidesPerView={5} // Flexible slides per view
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}

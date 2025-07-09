@@ -5,6 +5,15 @@
 
 const projects = [
   {
+    title: "Little Lemon Restaurant - React Front-End App",
+    subheader: "Meta Front-End Developer Professional Certificate | 2025",
+    image: `${process.env.PUBLIC_URL}/projectImages/littlelemon.png`,
+    description: "React Front-End application demonstrating component-based architecture, state management, responsive design, accessibility, and modern front-end best practices.",
+    techStack: "React | JavaScript | CSS | HTML | Figma",
+    expandDescription: "Features online table booking with real-time validation, admin reservation management, responsive and accessible UI, modular reusable components, modern theming, customer testimonials, and dish showcase. Strictly follows Meta UX/UI Figma designs. Includes unit/integration tests and runs on a local client server with mock data for full feature simulation.",
+    githubURL: "https://github.com/cedrusdang/portfoliofe"
+  },
+  {
     title: "Graph Database Project: Australian Road Fatality 2024",
     subheader: "UWA | Apr–May 2025 | Awarded: High Distinction",
     image: `${process.env.PUBLIC_URL}/projectImages/graphwarehouse.png`,
@@ -62,4 +71,3 @@ const projects = [
 ];
 
 export default projects;
-

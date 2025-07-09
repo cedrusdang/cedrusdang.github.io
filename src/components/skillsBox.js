@@ -67,6 +67,7 @@ function SkillsSwiper() {
                                 transition: 'background 0.2s, color 0.2s',
                                 cursor: 'default',
                                 color: theme.palette.text.secondary,
+                                fontFamily: "'Dancing Script', cursive",
                                 '&:hover': {
                                   background:
                                     theme.palette.mode === 'dark'

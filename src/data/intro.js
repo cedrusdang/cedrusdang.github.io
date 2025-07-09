@@ -49,3 +49,4 @@ Today, I specialize in Data Science and AI, building intelligent products, machi
 Beyond coding, I value exploring nature, meaningful conversations, and making a positive impact on people’s lives. 
 
 I am committed to using technology and analytics to drive real-world change.`;
+

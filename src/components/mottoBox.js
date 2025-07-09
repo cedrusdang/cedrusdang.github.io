@@ -87,7 +87,15 @@ function TypingEffect({ text, speed, onPhaseChange }) {
   }, [phase, onPhaseChange]);
 
   return (
-    <Typography variant="h6" sx={{textAlign: 'center', whiteSpace: 'pre-line' }}>
+    <Typography
+      variant="h6"
+      sx={{
+        textAlign: 'center',
+        whiteSpace: 'pre-line',
+        fontFamily: '"Dancing Script", cursive', // Add font family for dancing effect
+        letterSpacing: '0.04em',
+      }}
+    >
       {displayed}
     </Typography>
   );

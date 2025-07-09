@@ -133,7 +133,10 @@ export default function AvatarBox(){
           </Box>   
           <h2>{ownerName}</h2>                
           <Box sx={{ textAlign: 'center'}}>
-            <Typography>
+            <Typography sx={{
+              fontFamily: "'Dancing Script', cursive",
+              margin: '0rem 1rem 0rem 1rem',
+            }}>
               {LeftBoxIntro}
             </Typography>
             

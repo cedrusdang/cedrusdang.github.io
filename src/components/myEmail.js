@@ -24,7 +24,7 @@ export default function MyEmail() {
 
   const handleButtonClick = () => {
     clickHandler();
-    setCopied(true);    
+    setCopied(true);   
     setEmailCopied(true);
     setEmailPop(true);
     setTimeout(() => setCopied(false), 100);
@@ -34,12 +34,13 @@ export default function MyEmail() {
   return (
     <StyledPaper sx={{ marginTop: "1rem" }}>
       <StyledPaper>
-        <h3 style={{ margin: "0 0 0.25rem 0" }}>My Email</h3>
+        <h3 style={{ margin: "0.25rem 0 0.5rem 0" }}>My Email</h3>
           <div style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             padding: "0",
+            marginBottom: "0.5rem",
             }}
           >
               <span
@@ -71,6 +72,7 @@ export default function MyEmail() {
               </span>
               <span style={{
                 marginLeft: "0.4rem",
+                fontFamily: "'Dancing Script', cursive",
                 borderColor: "main.secondary",
                 borderWidth: "1px",
                 borderStyle: "solid",

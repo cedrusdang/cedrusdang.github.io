@@ -9,6 +9,7 @@ import SkillsBox from '../components/skillsBox.js';
 import IntroBox from '../components/introBox.js';
 import MottoBox from '../components/mottoBox.js';
 import MyEmail from '../components/myEmail.js';
+import LiveProject from '../components/liveProject.js';
 
 function LeftBox(){
   return (
@@ -20,6 +21,9 @@ function LeftBox(){
         <SkillsBox/>
       </Box>
       <MyEmail/>
+      <Box sx={{marginTop: '1rem'}}>
+        <LiveProject/>
+      </Box>
     </>
   );
 }
