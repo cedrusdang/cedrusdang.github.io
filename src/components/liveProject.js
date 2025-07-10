@@ -18,7 +18,6 @@ function buttonLiveProject(text, href) {
                     backgroundSize: "600% 600%",
                     animation: "colorAnimation 8s ease infinite",
                     borderWidth: "1px",
-                    borderStyle: "dotted",
                     borderColor: "lightblue",
                     fontFamily: "'Dancing Script', cursive",
                     textTransform: "none",

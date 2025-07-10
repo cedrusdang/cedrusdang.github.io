@@ -114,38 +114,37 @@ function SocialIconRework({ url, type, newTab = false }) {
 
 export default function AvatarBox(){
   return(
-      <StyledPaper> 
+      <StyledPaper>
         <StyledPaper>
           <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Avatar 
-                src={AvatarPic} 
-                alt="Avatar" 
-                sx={{ 
-                  margin: '0.5rem 0.5rem 0 0.5rem', 
+              <Avatar
+                src={AvatarPic}
+                alt="Avatar"
+                sx={{
+                  margin: '0.5rem 0.5rem 0 0.5rem',
                   width: { xs: '50vw', sm: '50vw', md: '30vw', lg: '30vw', xl: '30vw' },
                   height: 'auto',
                   maxWidth: '180px',
                   maxHeight: '180px',
-                  border: '0.2rem solid rgba(17, 62, 241, 0.47)', 
-                  boxShadow: '0 0 0 2px rgba(9, 17, 246, 0.76)', 
-                }} 
+                  border: '0.2rem solid rgba(17, 62, 241, 0.47)',
+                  boxShadow: '0 0 0 2px rgba(9, 17, 246, 0.76)',
+                }}
               />
-          </Box>   
-          <h2>{ownerName}</h2>                
+          </Box>
+          <h2>{ownerName}</h2>
           <Box sx={{ textAlign: 'center'}}>
             <Typography sx={{
-              fontFamily: "'Dancing Script', cursive",
-              margin: '0rem 1rem 0rem 1rem',
+              margin: '0rem 1rem 0rem 1rem'
             }}>
               {LeftBoxIntro}
             </Typography>
-            
+
           </Box>
 
           <Box sx={{
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             flexDirection: 'column',
             margin:'0vh 0 0 0'}}>
             <Box sx={{margin:'1rem 0 0 0'}}>
