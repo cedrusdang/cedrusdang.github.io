@@ -8,7 +8,7 @@ export const skillSets = [
     {
         "category": "Data Science",
         "skills": "Machine Learning|Deep Learning|NLP|Computer Vision|Data Analysis|Data Storytelling"
-    },  
+    },
     {
         "category": "Data Engineering",
         "skills": "Data ETL|Data Warehousing|Cloud Computing|IoT|Web Development"
@@ -23,7 +23,7 @@ export const skillSets = [
     },
     {
         "category": "Libraries & Frameworks",
-        "skills": "NumPy|Pandas|Scikit-learn|Matplotlib|Seaborn|TensorFlow|PyTorch|LangChain|AIGen API Engineering|React"
+        "skills": "NumPy|Pandas|Scikit-learn|Matplotlib|Seaborn|TensorFlow|PyTorch|LangChain|AIGen API Engineering|React|Django|Flask"
     },
     {
         "category": "Economics & Statistics",
