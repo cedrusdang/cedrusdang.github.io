@@ -45,7 +45,7 @@ const projects = [
     subheader: "UWA | Jul–Nov 2024 | Awarded: High Distinction",
     image: `${process.env.PUBLIC_URL}/projectImages/datastorytelling.png`,
     description: "Comprehensive analysis of Queensland traffic accident data (2001–2021) for trend discovery, underreporting, and actionable safety insights.",
-    techStack: "Tableau | Tableau Prep",
+    techStack: "Python | Jupyter | Pandas | Plotly",
     expandDescription: "Analyzed 20 years of accident data, identified critical patterns, population-growth effects, and underreported fatigue-related incidents. Recommended AI-driven models and public awareness campaigns for policy impact and operational adjustment. Skills: Data Analysis, Data Storytelling, Business Analysis, Policy Analytics.",
     githubURL: "https://github.com/cedrusdang/DataStoryTelling"
   },
