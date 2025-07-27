@@ -19,7 +19,7 @@ export default function PortfolioBoxes() {
     <>
 
         <Swiper
-          autoplay={{ 
+          autoplay={{
             delay: 5000,
           }}
 
@@ -68,7 +68,6 @@ export default function PortfolioBoxes() {
           </SwiperSlide>
         ))}
       </Swiper>
-      
     </>
   );
 }
